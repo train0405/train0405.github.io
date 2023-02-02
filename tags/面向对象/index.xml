@@ -2,26 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>面向对象 on Train&#39;s Blog</title>
-    <link>https://train0405.gitee.io/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</link>
+    <link>https://train0405.github.io/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</link>
     <description>Recent content in 面向对象 on Train&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 08 Jun 2020 19:32:27 +0800</lastBuildDate><atom:link href="https://train0405.gitee.io/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 08 Jun 2020 19:32:27 +0800</lastBuildDate><atom:link href="https://train0405.github.io/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>面向对象二</title>
-      <link>https://train0405.gitee.io/posts/tech/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E4%BA%8C/</link>
+      <link>https://train0405.github.io/posts/tech/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E4%BA%8C/</link>
       <pubDate>Mon, 08 Jun 2020 19:32:27 +0800</pubDate>
       
-      <guid>https://train0405.gitee.io/posts/tech/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E4%BA%8C/</guid>
+      <guid>https://train0405.github.io/posts/tech/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E4%BA%8C/</guid>
       <description>&lt;h1 id=&#34;面向对象二&#34;&gt;面向对象二&lt;/h1&gt;</description>
     </item>
     
     <item>
       <title>面向对象</title>
-      <link>https://train0405.gitee.io/posts/tech/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</link>
+      <link>https://train0405.github.io/posts/tech/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</link>
       <pubDate>Sun, 07 Jun 2020 18:32:23 +0800</pubDate>
       
-      <guid>https://train0405.gitee.io/posts/tech/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</guid>
+      <guid>https://train0405.github.io/posts/tech/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</guid>
       <description>&lt;h1 id=&#34;面向对象的思想&#34;&gt;面向对象的思想&lt;/h1&gt;</description>
     </item>
     
