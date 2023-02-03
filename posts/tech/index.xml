@@ -19,7 +19,7 @@
     <item>
       <title>list集合</title>
       <link>https://train0405.github.io/posts/tech/list%E9%9B%86%E5%90%88/</link>
-      <pubDate>Thu, 11 Jun 2020 22:53:15 +0800</pubDate>
+      <pubDate>Fri, 12 Jun 2020 22:53:15 +0800</pubDate>
       
       <guid>https://train0405.github.io/posts/tech/list%E9%9B%86%E5%90%88/</guid>
       <description>集合 对象数组的概述和使用 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 //需求: 创建5个学生对象, 将对象存入到数组中,遍历数组,打印学生信息 public static void main(String[] args) { Student[] sts = new Student[5]; sts[0] = new Student(&amp;#34;小红&amp;#34;, 18); sts[1] = new Student(&amp;#34;小明&amp;#34;, 19); sts[2] = new Student(&amp;#3</description>
