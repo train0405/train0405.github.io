@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>异常 on Train&#39;s Blog</title>
+    <link>https://train0405.github.io/tags/%E5%BC%82%E5%B8%B8/</link>
+    <description>Recent content in 异常 on Train&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 14 Jun 2020 20:42:02 +0800</lastBuildDate><atom:link href="https://train0405.github.io/tags/%E5%BC%82%E5%B8%B8/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>异常</title>
+      <link>https://train0405.github.io/posts/tech/%E5%BC%82%E5%B8%B8/</link>
+      <pubDate>Sun, 14 Jun 2020 20:42:02 +0800</pubDate>
+      
+      <guid>https://train0405.github.io/posts/tech/%E5%BC%82%E5%B8%B8/</guid>
+      <description>Throwable Throwable 类是 Java 语言中所有错误或异常的超类。 只有当对象是此类（或其子类之一）的实例时，才能通过 Java 虚拟机或者 Java throw 语句抛出。类似地，只有此类或其子类之一才可以是 catch 子句中的参数类型。 java定义了一个Throwable类作为所有异常类的超类。java中定义了很多异常类， 主要分为两类：Erro</description>
+    </item>
+    
+  </channel>
+</rss>
