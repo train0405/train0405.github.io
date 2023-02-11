@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>多线程 on Train&#39;s Blog</title>
+    <link>https://train0405.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</link>
+    <description>Recent content in 多线程 on Train&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 18 Jun 2020 21:30:27 +0800</lastBuildDate><atom:link href="https://train0405.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>多线程</title>
+      <link>https://train0405.github.io/posts/tech/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</link>
+      <pubDate>Thu, 18 Jun 2020 21:30:27 +0800</pubDate>
+      
+      <guid>https://train0405.github.io/posts/tech/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</guid>
+      <description>Java 多线程 Java 给多线程编程提供了内置的支持。 一条线程指的是进程中一个单一顺序的控制流，一个进程中可以并发多个线程，每条线程并行执行不同的任务。 一个线程的生命周期 线程是一个动态执行的过程，它也有一个从产生到死亡的过程。 下图显示了一个线程完整的生命周期。 新建状态: ​ 使用 new 关键字和 Thread 类或其</description>
+    </item>
+    
+  </channel>
+</rss>

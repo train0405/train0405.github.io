@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>反射 on Train&#39;s Blog</title>
+    <link>https://train0405.github.io/tags/%E5%8F%8D%E5%B0%84/</link>
+    <description>Recent content in 反射 on Train&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 17 Jun 2020 23:03:26 +0800</lastBuildDate><atom:link href="https://train0405.github.io/tags/%E5%8F%8D%E5%B0%84/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>反射</title>
+      <link>https://train0405.github.io/posts/tech/%E5%8F%8D%E5%B0%84/</link>
+      <pubDate>Wed, 17 Jun 2020 23:03:26 +0800</pubDate>
+      
+      <guid>https://train0405.github.io/posts/tech/%E5%8F%8D%E5%B0%84/</guid>
+      <description>Java 反射(Reflection) 在Java中，反射允许我们在运行时检查和操作类、接口、构造函数、方法和字段。 Java 类名为Class 在学习Java反射之前，我们需要了解一个名为Class的Java类。 Java中有一个名为Class的类，该类在运行时保留有关对象和类的所有信息。 Class对</description>
+    </item>
+    
+  </channel>
+</rss>

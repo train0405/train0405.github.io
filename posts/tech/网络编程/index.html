@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>网络编程 | Train&#39;s Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="Java 网络编程 网络编程是指编写运行在多个设备（计算机）的程序，这些设备都通过网络连接起来。 java.net 包中 J2SE 的 API 包含有类和接口，它们提供低层次的通信细节。你可以直接使用这些类和接口，来专注于解决问题，而不用关注通信细节。 java.net 包中提供了两种常见的网络协议的支持： TCP：TCP（英语：Transmi">
+<meta name="author" content="
+作者:&nbsp;Train">
+<link rel="canonical" href="https://train0405.github.io/posts/tech/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.a6c679e0d2f6e83a8f1aad1f7a2cdc96085c188647e679dbc62800f83be6bad2.css" integrity="sha256-psZ54NL26DqPGq0feizclghcGIZH5nnbxigA&#43;DvmutI=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+        onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://train0405.github.io/img/avatar.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://train0405.github.io/img/avatar.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://train0405.github.io/img/avatar.png">
+<link rel="apple-touch-icon" href="https://train0405.github.io/img/avatar.png">
+<link rel="mask-icon" href="https://train0405.github.io/img/avatar.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = ""; 
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<meta property="og:title" content="网络编程" />
+<meta property="og:description" content="Java 网络编程 网络编程是指编写运行在多个设备（计算机）的程序，这些设备都通过网络连接起来。 java.net 包中 J2SE 的 API 包含有类和接口，它们提供低层次的通信细节。你可以直接使用这些类和接口，来专注于解决问题，而不用关注通信细节。 java.net 包中提供了两种常见的网络协议的支持： TCP：TCP（英语：Transmi" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://train0405.github.io/posts/tech/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-06-20T14:49:38+08:00" />
+<meta property="article:modified_time" content="2020-06-20T14:49:38+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="网络编程"/>
+<meta name="twitter:description" content="Java 网络编程 网络编程是指编写运行在多个设备（计算机）的程序，这些设备都通过网络连接起来。 java.net 包中 J2SE 的 API 包含有类和接口，它们提供低层次的通信细节。你可以直接使用这些类和接口，来专注于解决问题，而不用关注通信细节。 java.net 包中提供了两种常见的网络协议的支持： TCP：TCP（英语：Transmi"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+
+        {
+          "@type": "ListItem",
+          "position":  1 ,
+          "name": "📚文章",
+          "item": "https://train0405.github.io/posts/"
+        },
+
+        {
+          "@type": "ListItem",
+          "position":  2 ,
+          "name": "👨🏻‍💻 技术",
+          "item": "https://train0405.github.io/posts/tech/"
+        }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "网络编程",
+      "item": "https://train0405.github.io/posts/tech/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "网络编程",
+  "name": "网络编程",
+  "description": "Java 网络编程 网络编程是指编写运行在多个设备（计算机）的程序，这些设备都通过网络连接起来。 java.net 包中 J2SE 的 API 包含有类和接口，它们提供低层次的通信细节。你可以直接使用这些类和接口，来专注于解决问题，而不用关注通信细节。 java.net 包中提供了两种常见的网络协议的支持： TCP：TCP（英语：Transmi",
+  "keywords": [
+    ""
+  ],
+  "articleBody": " Java 网络编程 网络编程是指编写运行在多个设备（计算机）的程序，这些设备都通过网络连接起来。\njava.net 包中 J2SE 的 API 包含有类和接口，它们提供低层次的通信细节。你可以直接使用这些类和接口，来专注于解决问题，而不用关注通信细节。\njava.net 包中提供了两种常见的网络协议的支持：\nTCP：TCP（英语：Transmission Control Protocol，传输控制协议） 是一种面向连接的、可靠的、基于字节流的传输层通信协议，TCP 层是位于 IP 层之上，应用层之下的中间层。TCP 保障了两个应用程序之间的可靠通信。通常用于互联网协议，被称 TCP / IP。 UDP：UDP （英语：User Datagram Protocol，用户数据报协议），位于 OSI 模型的传输层。一个无连接的协议。提供了应用程序之间要发送数据的数据报。由于UDP缺乏可靠性且属于无连接协议，所以应用程序通常必须容许一些丢失、错误或重复的数据包。 Socket 编程 套接字使用TCP提供了两台计算机之间的通信机制。 客户端程序创建一个套接字，并尝试连接服务器的套接字。\n当连接建立时，服务器会创建一个 Socket 对象。客户端和服务器现在可以通过对 Socket 对象的写入和读取来进行通信。\njava.net.Socket 类代表一个套接字，并且 java.net.ServerSocket 类为服务器程序提供了一种来监听客户端，并与他们建立连接的机制。\n以下步骤在两台计算机之间使用套接字建立TCP连接时会出现：\n服务器实例化一个 ServerSocket 对象，表示通过服务器上的端口通信。 服务器调用 ServerSocket 类的 accept() 方法，该方法将一直等待，直到客户端连接到服务器上给定的端口。 服务器正在等待时，一个客户端实例化一个 Socket 对象，指定服务器名称和端口号来请求连接。 Socket 类的构造函数试图将客户端连接到指定的服务器和端口号。如果通信被建立，则在客户端创建一个 Socket 对象能够与服务器进行通信。 在服务器端，accept() 方法返回服务器上一个新的 socket 引用，该 socket 连接到客户端的 socket。 连接建立后，通过使用 I/O 流在进行通信，每一个socket都有一个输出流和一个输入流，客户端的输出流连接到服务器端的输入流，而客户端的输入流连接到服务器端的输出流。\nTCP 是一个双向的通信协议，因此数据可以通过两个数据流在同一时间发送.以下是一些类提供的一套完整的有用的方法来实现 socket。\nServerSocket 类的方法 服务器应用程序通过使用 java.net.ServerSocket 类以获取一个端口,并且侦听客户端请求。\nServerSocket 类有四个构造方法：\n序号 方法描述 1 public ServerSocket(int port) throws IOException 创建绑定到特定端口的服务器套接字。 2 public ServerSocket(int port, int backlog) throws IOException 利用指定的 backlog 创建服务器套接字并将其绑定到指定的本地端口号。 3 public ServerSocket(int port, int backlog, InetAddress address) throws IOException 使用指定的端口、侦听 backlog 和要绑定到的本地 IP 地址创建服务器。 4 public ServerSocket() throws IOException 创建非绑定服务器套接字。 这里有一些 ServerSocket 类的常用方法：\n序号 方法描述 1 public int getLocalPort() 返回此套接字在其上侦听的端口。 2 public Socket accept() throws IOException 侦听并接受到此套接字的连接。 3 public void setSoTimeout(int timeout) 通过指定超时值启用/禁用 SO_TIMEOUT，以毫秒为单位。 4 public void bind(SocketAddress host, int backlog) 将 ServerSocket 绑定到特定地址（IP 地址和端口号）。 Socket 类的方法 java.net.Socket 类代表客户端和服务器都用来互相沟通的套接字。客户端要获取一个 Socket 对象通过实例化 ，而 服务器获得一个 Socket 对象则通过 accept() 方法的返回值。\nSocket 类有五个构造方法\n序号 方法描述 1 public Socket(String host, int port) throws UnknownHostException, IOException. 创建一个流套接字并将其连接到指定主机上的指定端口号。 2 public Socket(InetAddress host, int port) throws IOException 创建一个流套接字并将其连接到指定 IP 地址的指定端口号。 3 public Socket(String host, int port, InetAddress localAddress, int localPort) throws IOException. 创建一个套接字并将其连接到指定远程主机上的指定远程端口。 4 public Socket(InetAddress host, int port, InetAddress localAddress, int localPort) throws IOException. 创建一个套接字并将其连接到指定远程地址上的指定远程端口。 5 public Socket() 通过系统默认类型的 SocketImpl 创建未连接套接字 当 Socket 构造方法返回，并没有简单的实例化了一个 Socket 对象，它实际上会尝试连接到指定的服务器和端口。\n下面列出了一些感兴趣的方法，注意客户端和服务器端都有一个 Socket 对象，所以无论客户端还是服务端都能够调用这些方法。\n序号 方法描述 1 public void connect(SocketAddress host, int timeout) throws IOException 将此套接字连接到服务器，并指定一个超时值。 2 public InetAddress getInetAddress() 返回套接字连接的地址。 3 public int getPort() 返回此套接字连接到的远程端口。 4 public int getLocalPort() 返回此套接字绑定到的本地端口。 5 public SocketAddress getRemoteSocketAddress() 返回此套接字连接的端点的地址，如果未连接则返回 null。 6 public InputStream getInputStream() throws IOException 返回此套接字的输入流。 7 public OutputStream getOutputStream() throws IOException 返回此套接字的输出流。 8 public void close() throws IOException 关闭此套接字。 InetAddress 类的方法 这个类表示互联网协议(IP)地址。下面列出了 Socket 编程时比较有用的方法：\n序号 方法描述 1 static InetAddress getByAddress(byte[] addr) 在给定原始 IP 地址的情况下，返回 InetAddress 对象。 2 static InetAddress getByAddress(String host, byte[] addr) 根据提供的主机名和 IP 地址创建 InetAddress。 3 static InetAddress getByName(String host) 在给定主机名的情况下确定主机的 IP 地址。 4 String getHostAddress() 返回 IP 地址字符串（以文本表现形式）。 5 String getHostName() 获取此 IP 地址的主机名。 6 static InetAddress getLocalHost() 返回本地主机。 7 String toString() 将此 IP 地址转换为 String。 Socket 客户端实例 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 public static void main(String[] args) throws IOException { String serverName = \"localhost\"; int port = 8888; System.out.println(\"连接到主机：\" + serverName + \" ，端口号：\" + port); Socket client = new Socket(serverName,port); System.out.println(\"远程主机地址：\" + client.getRemoteSocketAddress()); OutputStream outToServer = client.getOutputStream(); DataOutputStream out = new DataOutputStream(outToServer); out.writeUTF(\"Hello from \" + client.getLocalSocketAddress()); //读取返回 InputStream inFromServer = client.getInputStream(); DataInputStream in = new DataInputStream(inFromServer); System.out.println(\"服务器响应： \" + in.readUTF()); client.close(); } Socket 服务端实例 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 public class GreetingServer { private ServerSocket serverSocket; public GreetingServer(int port) throws IOException { serverSocket = new ServerSocket(port); serverSocket.setSoTimeout(10000); } public void run() throws IOException { while (true){ System.out.println(\"等待远程连接，端口号为: \"+serverSocket.getLocalPort()+\"...\"); Socket server = serverSocket.accept(); System.out.println(\"远程主机地址：\"+server.getRemoteSocketAddress()); InputStream is = server.getInputStream(); DataInputStream in = new DataInputStream(is); System.out.println(\"in.readUTF\"+in.readUTF()); //反馈消息 OutputStream os = server.getOutputStream(); DataOutputStream ou = new DataOutputStream(os); ou.writeUTF(\"谢谢连接我：\" + server.getLocalSocketAddress() + \"\\nGoodbye!\"); server.close(); } } public static void main(String[] args) throws IOException { GreetingServer greetingServer = new GreetingServer(8888); greetingServer.run(); } } ",
+  "wordCount" : "2333",
+  "inLanguage": "en",
+  "datePublished": "2020-06-20T14:49:38+08:00",
+  "dateModified": "2020-06-20T14:49:38+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "Train"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://train0405.github.io/posts/tech/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Train's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://train0405.github.io/img/avatar.png"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://train0405.github.io/" accesskey="h" title="Train&#39;s Blog (Alt + H)">
+            <img src="https://train0405.github.io/img/mona-whisper.gif" alt="logo" aria-label="logo"
+                 height="35">Train&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://train0405.github.io/search" title="🔍 搜索 (Alt &#43; /)" accesskey=/>
+                <span>🔍 搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://train0405.github.io/" title="🏠 主页">
+                <span>🏠 主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://train0405.github.io/posts" title="📚 文章">
+                <span>📚 文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://train0405.github.io/tags" title="🧩 标签">
+                <span>🧩 标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://train0405.github.io/archives/" title="⏱️ 时间轴">
+                <span>⏱️ 时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://train0405.github.io/about" title="🙋🏻‍♂️ 关于">
+                <span>🙋🏻‍♂️ 关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main page">
+<article class="post-single">
+    <div id="single-content">
+        <header class="post-header">
+            <div class="breadcrumbs"><a href="https://train0405.github.io/">主页</a>&nbsp;»&nbsp;<a href="https://train0405.github.io/posts/">📚文章</a>&nbsp;»&nbsp;<a href="https://train0405.github.io/posts/tech/">👨🏻‍💻 技术</a></div>
+            <h1 class="post-title">
+                网络编程
+            </h1>
+            <div class="post-meta">创建:&nbsp;<span title='2020-06-20 14:49:38 +0800 CST'>2020-06-20</span>&nbsp;|&nbsp;更新:&nbsp;2020-06-20&nbsp;|&nbsp;字数:&nbsp;2333字&nbsp;|&nbsp;时长:&nbsp;5分钟&nbsp;|&nbsp;
+作者:&nbsp;Train
+
+
+
+                &nbsp;|&nbsp;标签: &nbsp;
+                <ul class="post-tags-meta">
+                    <a href="https://train0405.github.io/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">网络编程</a>
+                </ul>
+
+                
+                <span id="busuanzi_container_page_pv">
+                &nbsp;| 访问: <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+</div>
+        </header> 
+        <aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">文章目录</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#java-%e7%bd%91%e7%bb%9c%e7%bc%96%e7%a8%8b" aria-label="Java 网络编程">Java 网络编程</a><ul>
+                        
+                <li>
+                    <a href="#socket-%e7%bc%96%e7%a8%8b" aria-label="Socket 编程">Socket 编程</a></li>
+                <li>
+                    <a href="#serversocket-%e7%b1%bb%e7%9a%84%e6%96%b9%e6%b3%95" aria-label="ServerSocket 类的方法">ServerSocket 类的方法</a></li>
+                <li>
+                    <a href="#socket-%e7%b1%bb%e7%9a%84%e6%96%b9%e6%b3%95" aria-label="Socket 类的方法">Socket 类的方法</a></li>
+                <li>
+                    <a href="#inetaddress-%e7%b1%bb%e7%9a%84%e6%96%b9%e6%b3%95" aria-label="InetAddress 类的方法">InetAddress 类的方法</a></li>
+                <li>
+                    <a href="#socket-%e5%ae%a2%e6%88%b7%e7%ab%af%e5%ae%9e%e4%be%8b" aria-label="Socket 客户端实例">Socket 客户端实例</a></li>
+                <li>
+                    <a href="#socket-%e6%9c%8d%e5%8a%a1%e7%ab%af%e5%ae%9e%e4%be%8b" aria-label="Socket 服务端实例">Socket 服务端实例</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+        
+        activeElement = elements[0];
+        const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+        document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+    }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        activeElement = Array.from(elements).find((element) => {
+            if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                return element;
+            }
+        }) || activeElement
+
+        elements.forEach(element => {
+            const id = encodeURI(element.getAttribute('id')).toLowerCase();
+            if (element === activeElement){
+                document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+            } else {
+                document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+            }
+        })
+    }, false);
+
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;
+    }
+</script>
+        
+        <div class="post-content"><meta name="referrer" content="no-referrer" />
+<h1 id="java-网络编程">Java 网络编程<a hidden class="anchor" aria-hidden="true" href="#java-网络编程">#</a></h1>
+<p>网络编程是指编写运行在多个设备（计算机）的程序，这些设备都通过网络连接起来。</p>
+<p>java.net 包中 J2SE 的 API 包含有类和接口，它们提供低层次的通信细节。你可以直接使用这些类和接口，来专注于解决问题，而不用关注通信细节。</p>
+<p>java.net 包中提供了两种常见的网络协议的支持：</p>
+<ul>
+<li><strong>TCP</strong>：TCP（英语：Transmission Control Protocol，传输控制协议） 是一种面向连接的、可靠的、基于字节流的传输层通信协议，TCP 层是位于 IP 层之上，应用层之下的中间层。TCP 保障了两个应用程序之间的可靠通信。通常用于互联网协议，被称 TCP / IP。</li>
+<li><strong>UDP</strong>：UDP （英语：User Datagram Protocol，用户数据报协议），位于 OSI 模型的传输层。一个无连接的协议。提供了应用程序之间要发送数据的数据报。由于UDP缺乏可靠性且属于无连接协议，所以应用程序通常必须容许一些丢失、错误或重复的数据包。</li>
+</ul>
+<h2 id="socket-编程">Socket 编程<a hidden class="anchor" aria-hidden="true" href="#socket-编程">#</a></h2>
+<p>套接字使用TCP提供了两台计算机之间的通信机制。 客户端程序创建一个套接字，并尝试连接服务器的套接字。</p>
+<p>当连接建立时，服务器会创建一个 Socket 对象。客户端和服务器现在可以通过对 Socket 对象的写入和读取来进行通信。</p>
+<p>java.net.Socket 类代表一个套接字，并且 java.net.ServerSocket 类为服务器程序提供了一种来监听客户端，并与他们建立连接的机制。</p>
+<p>以下步骤在两台计算机之间使用套接字建立TCP连接时会出现：</p>
+<ul>
+<li>服务器实例化一个 ServerSocket 对象，表示通过服务器上的端口通信。</li>
+<li>服务器调用 ServerSocket 类的 accept() 方法，该方法将一直等待，直到客户端连接到服务器上给定的端口。</li>
+<li>服务器正在等待时，一个客户端实例化一个 Socket 对象，指定服务器名称和端口号来请求连接。</li>
+<li>Socket 类的构造函数试图将客户端连接到指定的服务器和端口号。如果通信被建立，则在客户端创建一个 Socket 对象能够与服务器进行通信。</li>
+<li>在服务器端，accept() 方法返回服务器上一个新的 socket 引用，该 socket 连接到客户端的 socket。</li>
+</ul>
+<p>连接建立后，通过使用 I/O 流在进行通信，每一个socket都有一个输出流和一个输入流，客户端的输出流连接到服务器端的输入流，而客户端的输入流连接到服务器端的输出流。</p>
+<p>TCP 是一个双向的通信协议，因此数据可以通过两个数据流在同一时间发送.以下是一些类提供的一套完整的有用的方法来实现 socket。</p>
+<h2 id="serversocket-类的方法">ServerSocket 类的方法<a hidden class="anchor" aria-hidden="true" href="#serversocket-类的方法">#</a></h2>
+<p>服务器应用程序通过使用 java.net.ServerSocket 类以获取一个端口,并且侦听客户端请求。</p>
+<p>ServerSocket 类有四个构造方法：</p>
+<table>
+<thead>
+<tr>
+<th><strong>序号</strong></th>
+<th><strong>方法描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>public ServerSocket(int port) throws IOException</strong> 创建绑定到特定端口的服务器套接字。</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>public ServerSocket(int port, int backlog) throws IOException</strong> 利用指定的 backlog 创建服务器套接字并将其绑定到指定的本地端口号。</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>public ServerSocket(int port, int backlog, InetAddress address) throws IOException</strong> 使用指定的端口、侦听 backlog 和要绑定到的本地 IP 地址创建服务器。</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>public ServerSocket() throws IOException</strong> 创建非绑定服务器套接字。</td>
+</tr>
+</tbody>
+</table>
+<p>这里有一些 ServerSocket 类的常用方法：</p>
+<table>
+<thead>
+<tr>
+<th><strong>序号</strong></th>
+<th><strong>方法描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>public int getLocalPort()</strong>  返回此套接字在其上侦听的端口。</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>public Socket accept() throws IOException</strong> 侦听并接受到此套接字的连接。</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>public void setSoTimeout(int timeout)</strong>  通过指定超时值启用/禁用 SO_TIMEOUT，以毫秒为单位。</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>public void bind(SocketAddress host, int backlog)</strong> 将 ServerSocket 绑定到特定地址（IP 地址和端口号）。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="socket-类的方法">Socket 类的方法<a hidden class="anchor" aria-hidden="true" href="#socket-类的方法">#</a></h2>
+<p>java.net.Socket 类代表客户端和服务器都用来互相沟通的套接字。客户端要获取一个 Socket 对象通过实例化 ，而 服务器获得一个 Socket 对象则通过 accept() 方法的返回值。</p>
+<p>Socket 类有五个构造方法</p>
+<table>
+<thead>
+<tr>
+<th><strong>序号</strong></th>
+<th><strong>方法描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>public Socket(String host, int port) throws UnknownHostException, IOException.</strong> 创建一个流套接字并将其连接到指定主机上的指定端口号。</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>public Socket(InetAddress host, int port) throws IOException</strong> 创建一个流套接字并将其连接到指定 IP 地址的指定端口号。</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>public Socket(String host, int port, InetAddress localAddress, int localPort) throws IOException.</strong> 创建一个套接字并将其连接到指定远程主机上的指定远程端口。</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>public Socket(InetAddress host, int port, InetAddress localAddress, int localPort) throws IOException.</strong> 创建一个套接字并将其连接到指定远程地址上的指定远程端口。</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>public Socket()</strong> 通过系统默认类型的 SocketImpl 创建未连接套接字</td>
+</tr>
+</tbody>
+</table>
+<p>当 Socket 构造方法返回，并没有简单的实例化了一个 Socket 对象，它实际上会尝试连接到指定的服务器和端口。</p>
+<p>下面列出了一些感兴趣的方法，注意客户端和服务器端都有一个 Socket 对象，所以无论客户端还是服务端都能够调用这些方法。</p>
+<table>
+<thead>
+<tr>
+<th><strong>序号</strong></th>
+<th><strong>方法描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>public void connect(SocketAddress host, int timeout) throws IOException</strong> 将此套接字连接到服务器，并指定一个超时值。</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>public InetAddress getInetAddress()</strong>  返回套接字连接的地址。</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>public int getPort()</strong> 返回此套接字连接到的远程端口。</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>public int getLocalPort()</strong> 返回此套接字绑定到的本地端口。</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>public SocketAddress getRemoteSocketAddress()</strong> 返回此套接字连接的端点的地址，如果未连接则返回 null。</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>public InputStream getInputStream() throws IOException</strong> 返回此套接字的输入流。</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>public OutputStream getOutputStream() throws IOException</strong> 返回此套接字的输出流。</td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>public void close() throws IOException</strong> 关闭此套接字。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="inetaddress-类的方法">InetAddress 类的方法<a hidden class="anchor" aria-hidden="true" href="#inetaddress-类的方法">#</a></h2>
+<p>这个类表示互联网协议(IP)地址。下面列出了 Socket 编程时比较有用的方法：</p>
+<table>
+<thead>
+<tr>
+<th><strong>序号</strong></th>
+<th><strong>方法描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>static InetAddress getByAddress(byte[] addr)</strong> 在给定原始 IP 地址的情况下，返回 InetAddress 对象。</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>static InetAddress getByAddress(String host, byte[] addr)</strong> 根据提供的主机名和 IP 地址创建 InetAddress。</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>static InetAddress getByName(String host)</strong> 在给定主机名的情况下确定主机的 IP 地址。</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>String getHostAddress()</strong>  返回 IP 地址字符串（以文本表现形式）。</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>String getHostName()</strong>   获取此 IP 地址的主机名。</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>static InetAddress getLocalHost()</strong> 返回本地主机。</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>String toString()</strong> 将此 IP 地址转换为 String。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="socket-客户端实例">Socket 客户端实例<a hidden class="anchor" aria-hidden="true" href="#socket-客户端实例">#</a></h2>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JAVA" data-lang="JAVA"><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        String serverName <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;localhost&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> port <span style="color:#f92672">=</span> <span style="color:#ae81ff">8888</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;连接到主机：&#34;</span> <span style="color:#f92672">+</span> serverName <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; ，端口号：&#34;</span> <span style="color:#f92672">+</span> port<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        Socket client <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Socket<span style="color:#f92672">(</span>serverName<span style="color:#f92672">,</span>port<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;远程主机地址：&#34;</span> <span style="color:#f92672">+</span> client<span style="color:#f92672">.</span><span style="color:#a6e22e">getRemoteSocketAddress</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>        OutputStream outToServer <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span><span style="color:#a6e22e">getOutputStream</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        DataOutputStream out <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DataOutputStream<span style="color:#f92672">(</span>outToServer<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        out<span style="color:#f92672">.</span><span style="color:#a6e22e">writeUTF</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Hello from &#34;</span> <span style="color:#f92672">+</span> client<span style="color:#f92672">.</span><span style="color:#a6e22e">getLocalSocketAddress</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//读取返回
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        InputStream inFromServer <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span><span style="color:#a6e22e">getInputStream</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        DataInputStream in <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DataInputStream<span style="color:#f92672">(</span>inFromServer<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;服务器响应： &#34;</span> <span style="color:#f92672">+</span> in<span style="color:#f92672">.</span><span style="color:#a6e22e">readUTF</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>        client<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="socket-服务端实例">Socket 服务端实例<a hidden class="anchor" aria-hidden="true" href="#socket-服务端实例">#</a></h2>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JAVA" data-lang="JAVA"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">GreetingServer</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> ServerSocket serverSocket<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">GreetingServer</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> port<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        serverSocket <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ServerSocket<span style="color:#f92672">(</span>port<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        serverSocket<span style="color:#f92672">.</span><span style="color:#a6e22e">setSoTimeout</span><span style="color:#f92672">(</span><span style="color:#ae81ff">10000</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">){</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;等待远程连接，端口号为: &#34;</span><span style="color:#f92672">+</span>serverSocket<span style="color:#f92672">.</span><span style="color:#a6e22e">getLocalPort</span><span style="color:#f92672">()+</span><span style="color:#e6db74">&#34;...&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            Socket server <span style="color:#f92672">=</span> serverSocket<span style="color:#f92672">.</span><span style="color:#a6e22e">accept</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;远程主机地址：&#34;</span><span style="color:#f92672">+</span>server<span style="color:#f92672">.</span><span style="color:#a6e22e">getRemoteSocketAddress</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>            InputStream is <span style="color:#f92672">=</span> server<span style="color:#f92672">.</span><span style="color:#a6e22e">getInputStream</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>            DataInputStream in <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DataInputStream<span style="color:#f92672">(</span>is<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;in.readUTF&#34;</span><span style="color:#f92672">+</span>in<span style="color:#f92672">.</span><span style="color:#a6e22e">readUTF</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">//反馈消息
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            OutputStream os <span style="color:#f92672">=</span> server<span style="color:#f92672">.</span><span style="color:#a6e22e">getOutputStream</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>            DataOutputStream ou <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DataOutputStream<span style="color:#f92672">(</span>os<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            ou<span style="color:#f92672">.</span><span style="color:#a6e22e">writeUTF</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;谢谢连接我：&#34;</span> <span style="color:#f92672">+</span> server<span style="color:#f92672">.</span><span style="color:#a6e22e">getLocalSocketAddress</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;\nGoodbye!&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            server<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        GreetingServer greetingServer <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> GreetingServer<span style="color:#f92672">(</span><span style="color:#ae81ff">8888</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        greetingServer<span style="color:#f92672">.</span><span style="color:#a6e22e">run</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+
+        </div>
+
+        <footer class="post-footer">
+            
+<nav class="paginav">
+  <a class="prev" href="https://train0405.github.io/posts/tech/html/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>HTML</span>
+  </a>
+  <a class="next" href="https://train0405.github.io/posts/tech/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>多线程</span>
+  </a>
+</nav>
+
+        </footer>
+    </div>
+
+
+
+<div>
+    <div class="pagination__title">
+        <span class="pagination__title-h" style="font-size: 20px;">💬评论</span>
+        <hr />
+    </div>
+
+    <div id="tcomment"></div>
+
+    <script src="https://cdn.staticfile.org/twikoo/1.5.8/twikoo.all.min.js">
+    </script>
+    
+
+    
+
+    <script>
+        twikoo.init({
+            envId:  null , 
+            el: "#tcomment",
+            lang: 'zh-CN',
+            region:  null ,
+            path: window.TWIKOO_MAGIC_PATH||window.location.pathname,
+            
+            
+            
+            
+            
+            
+            
+        });
+    </script>
+
+</div>
+</article>
+</main>
+
+
+<script async src="https://unpkg.com/mermaid@8.8.1/dist/mermaid.min.js"></script>
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<footer class="footer">
+    <span>
+        Copyright
+        &copy;
+        2020-2023
+        <a href="https://train0405.github.io/" style="color:#939393;">Train&#39;s Blog</a>
+        All Rights Reserved
+    </span>
+
+    <a href="https://beian.miit.gov.cn/" target="_blank" style="color:#939393;">填写自己的备案号</a>&nbsp;
+
+    <span>
+        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=null"
+           style="display:inline-block;text-decoration:none;height:20px;color:#939393;">
+            <img src="img/beian.png" style="float:left;margin: 0px 5px 0px 0px;"/>
+            填自己的公网安备
+        </a>
+    </span>
+
+    <span id="busuanzi_container">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        总访客数: <span id="busuanzi_value_site_uv"></span>
+        总访问量: <span id="busuanzi_value_site_pv"></span>
+    </span>
+
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <span class="topInner">
+        <svg class="topSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z"/>
+        </svg>
+        <span id="read_progress"></span>
+    </span>
+</a>
+
+<script>
+    document.addEventListener('scroll', function (e) {
+        const readProgress = document.getElementById("read_progress");
+        const scrollHeight = document.documentElement.scrollHeight;
+        const clientHeight = document.documentElement.clientHeight;
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        
+        readProgress.innerText = ((scrollTop / (scrollHeight - clientHeight)).toFixed(2) * 100).toFixed(0);
+    })
+</script>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    let mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+
+<script>
+    document.body.addEventListener('copy', function (e) {
+        if (window.getSelection().toString() && window.getSelection().toString().length > 50) {
+            let clipboardData = e.clipboardData || window.clipboardData;
+            if (clipboardData) {
+                e.preventDefault();
+                let htmlData = window.getSelection().toString() +
+                    '\r\n\n————————————————\r\n' +
+                    '版权声明：本文为「' + {
+                { .
+                    Site.Title
+                }
+            }
+                +'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                let textData = window.getSelection().toString() +
+                    '\r\n\n————————————————\r\n' +
+                    '版权声明：本文为「' + {
+                { .
+                    Site.Title
+                }
+            }
+                +'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                clipboardData.setData('text/html', htmlData);
+                clipboardData.setData('text/plain', textData);
+            }
+        }
+    });
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = '📄复制';
+
+        function copyingDone() {
+            copybutton.innerText = '👌🏻已复制!';
+            setTimeout(() => {
+                copybutton.innerText = '📄复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                let text = codeblock.textContent +
+                    '\r\n————————————————\r\n' +
+                    '版权声明：本文为「' + "Train's Blog"
+                +'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                navigator.clipboard.writeText(text);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) {
+            }
+            ;
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild === container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName === "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+    $("code[class^=language] ").on("mouseover", function () {
+        if (this.clientWidth < this.scrollWidth) {
+            $(this).css("width", "135%")
+        }
+    }).on("mouseout", function () {
+        $(this).css("width", "100%")
+    })
+</script>
+</body>
+
+</html>

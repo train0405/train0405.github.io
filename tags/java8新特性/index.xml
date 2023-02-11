@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>java8新特性 on Train&#39;s Blog</title>
+    <link>https://train0405.github.io/tags/java8%E6%96%B0%E7%89%B9%E6%80%A7/</link>
+    <description>Recent content in java8新特性 on Train&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 16 Jun 2020 10:54:41 +0800</lastBuildDate><atom:link href="https://train0405.github.io/tags/java8%E6%96%B0%E7%89%B9%E6%80%A7/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java8新特性</title>
+      <link>https://train0405.github.io/posts/tech/java8%E6%96%B0%E7%89%B9%E6%80%A7/</link>
+      <pubDate>Tue, 16 Jun 2020 10:54:41 +0800</pubDate>
+      
+      <guid>https://train0405.github.io/posts/tech/java8%E6%96%B0%E7%89%B9%E6%80%A7/</guid>
+      <description>Java8概述 Java8 (又称 JKD1.8) 是 Java 语言开发的一个主要版本。 Oracle公司于2014年3月18日发布Java8 。 支持Lambda表达式 函数式接口 新的Stream API 新的日期 API 其他特性 Lambda表达式 Lambda表达式是特殊的匿名内部类，语法更简洁。 Lambda表达式允许把函数作为一个方</description>
+    </item>
+    
+  </channel>
+</rss>
