@@ -1,0 +1,1805 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Mysql笔记 | Train&#39;s Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="mysql笔记 SQL 语句分类 DQL（数据查询语言）：查询语句，凡是select语句都是DQL DML（数据操作语言）：insert delete update，对表中的数据进行增删改 DDL（数据定义语言）：create drop alter，对表结构的增删改 TCL（事务控制语言）：commit提交事务，rol">
+<meta name="author" content="
+作者:&nbsp;Train">
+<link rel="canonical" href="https://train0405.github.io/posts/tech/mysql%E7%AC%94%E8%AE%B0/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.a6c679e0d2f6e83a8f1aad1f7a2cdc96085c188647e679dbc62800f83be6bad2.css" integrity="sha256-psZ54NL26DqPGq0feizclghcGIZH5nnbxigA&#43;DvmutI=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+        onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://train0405.github.io/img/avatar.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://train0405.github.io/img/avatar.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://train0405.github.io/img/avatar.png">
+<link rel="apple-touch-icon" href="https://train0405.github.io/img/avatar.png">
+<link rel="mask-icon" href="https://train0405.github.io/img/avatar.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = ""; 
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<meta property="og:title" content="Mysql笔记" />
+<meta property="og:description" content="mysql笔记 SQL 语句分类 DQL（数据查询语言）：查询语句，凡是select语句都是DQL DML（数据操作语言）：insert delete update，对表中的数据进行增删改 DDL（数据定义语言）：create drop alter，对表结构的增删改 TCL（事务控制语言）：commit提交事务，rol" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://train0405.github.io/posts/tech/mysql%E7%AC%94%E8%AE%B0/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-07-14T14:14:14+08:00" />
+<meta property="article:modified_time" content="2020-07-14T14:14:14+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Mysql笔记"/>
+<meta name="twitter:description" content="mysql笔记 SQL 语句分类 DQL（数据查询语言）：查询语句，凡是select语句都是DQL DML（数据操作语言）：insert delete update，对表中的数据进行增删改 DDL（数据定义语言）：create drop alter，对表结构的增删改 TCL（事务控制语言）：commit提交事务，rol"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+
+        {
+          "@type": "ListItem",
+          "position":  1 ,
+          "name": "📚文章",
+          "item": "https://train0405.github.io/posts/"
+        },
+
+        {
+          "@type": "ListItem",
+          "position":  2 ,
+          "name": "👨🏻‍💻 技术",
+          "item": "https://train0405.github.io/posts/tech/"
+        }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Mysql笔记",
+      "item": "https://train0405.github.io/posts/tech/mysql%E7%AC%94%E8%AE%B0/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Mysql笔记",
+  "name": "Mysql笔记",
+  "description": "mysql笔记 SQL 语句分类 DQL（数据查询语言）：查询语句，凡是select语句都是DQL DML（数据操作语言）：insert delete update，对表中的数据进行增删改 DDL（数据定义语言）：create drop alter，对表结构的增删改 TCL（事务控制语言）：commit提交事务，rol",
+  "keywords": [
+    ""
+  ],
+  "articleBody": " mysql笔记 SQL 语句分类 DQL（数据查询语言）：查询语句，凡是select语句都是DQL\nDML（数据操作语言）：insert delete update，对表中的数据进行增删改\nDDL（数据定义语言）：create drop alter，对表结构的增删改\nTCL（事务控制语言）：commit提交事务，rollback回滚事务。（T：transaction）\nDCL（数据控制语言）：grant授权、revoke撤销权限等。\n命令 创建数据库 使用数据库 显示表 删除数据库 查看表结构 查看mysql版本 查看表创建时的语句\n1 2 3 4 5 6 7 create database mydb use mydb show tables drop database mydb desc table_name select version() show create table table_name 查询语句 语法格式\n1 select 字段1,字段2,... from table_name; 给查询字段起别名\n1 select EMPNO AS '编号',ENAME as '姓名' from emp; 给查询字段做运算\n1 select EMPNO AS '编号',ENAME as '姓名',sal*12 as '年薪' from emp; 查询所有(实际开发中，效率低，不使用)\n1 select * from emp 条件查询 语法格式 查询字符串类型字段需要加上单引号\n1 2 3 4 5 6 select 字段,字段... from table_name where 条件;\t找出大于3000的工资的员工 大于等于 \u003e= 不等于\u003c\u003e 小于\u003c\n1 2 3 4 5 6 select * from emp where sal \u003e 3000; 查询工资大于等于1000 小于等于3000 BETWEEN…AND…. 两个值之间 闭区间[1000,3000]\n1 2 3 4 5 6 select * from emp where sal BETWEEN 1000 AND 3000; 运算符 说明 and 并且 or 或者 in 包含 相当于多个or not not 可以取非，主要用在 is 或者 in 中 （where id not in (1,2,3)） like 模糊查询 is null 为 null(is not null 不为空) 找出工作岗位时 MANAGER和SALESMAN的员工\n1 2 3 4 5 6 7 8 9 10 11 12 13 select * from emp where JOB in ('SALESMAN','MANAGER'); # OR select * from emp where JOB= 'SALESMAN'OR JOB='MANAGER'; and 和 or 联合起来用 ：找出薪资大于2000的，并且部门编号是20 或者 30 的员工\n1 2 3 4 5 6 7 8 9 10 11 12 13 select * from emp where sal \u003e 2000 and DEPTNO in(20,30); # OR select * from emp where sal \u003e 2000 and ( DEPTNO= 20 or DEPTNO=30); 错误写法:\n1 2 3 4 5 6 select * from emp where sal \u003e 2000 and DEPTNO= 20 or DEPTNO=30; 错误分析：and和or放在一起是，and先执行。 sal \u003e 2000 and DEPTNO= 20 先执行，然后再把 or DEPTNO=30的员工查出来。and 优先级高，与前后顺序无关。\n当优先级不确定的时候加小括号()。优先执行。\n模糊查询 %:代表任意多个字符\n_:代表任意一个字符\n找出名字中含有O的\n1 2 3 4 5 6 select * from emp where ENAME like '%o%'; 排序 order by默认升序 asc 升序 desc降序 order by是最后执行的\n1 2 3 4 5 select * from emp order by sal 分组函数 记住：所有的分组函数都是对 “一组”数据进行操作\n分组函数也叫聚合函数，多行处理函数，意思就是输入多行，输出一行。分组函数一共5个，没有别的\n1 2 3 4 5 6 7 8 9 10 # 计数 select count(*) from emp; # 求和 select sum(sal) from emp; # 最大值 select max(sal) from emp; # 最小值 select min(sal) from emp; # 平均值 select avg(sal) from emp; 特点：分组函数运算时自动忽略 null，null不参与运算。分组函数不把 null 放在眼里。\n计算每个员工的年薪\n1 select ENAME,(sal+ifnull(comm,0))*12 as '年薪' from emp; 注意事项：和 null 值做运算，结果一定为 null 。ifnull(param1,param2)函数第一个参数为字段，第二个参数为预值。若字段值为 null。\n则用预值处理。\n规则：分组函数不能直接使用在 where 子句当中\ncount(*):统计总数量\ncount(某个字段):统计某个字段不为 null 的总数量\n分组查询group by group by :按照某个字段或者某些字段进行分组。\nhaving ：having 是对分组之后的数据进行再次过滤。\n找出每个岗位的最高薪资\n1 2 3 4 5 6 7 # where先执行，然后执行进行group by分组，然后 select 每一组的最大工资。执行顺序 先 from 再group by 再select max() # 分组函数永远都是在group by执行后再执行。 # 当sql语句没有 group by 的时候，整张表的数据自成一组。 # 分组函数必须在分完组后才能用 # 分组函数不能放在 where 后面 。是因为在where max(字段) 的时候 group by 还没有执行 select job ,max(sal) from emp group by job 执行顺序\n1 2 3 4 5 6 7 8 9 10 11 12 select------5 xx from--------\u003e1 xx where-------\u003e2 xx group by ---\u003e3 xx having -----\u003e4 xx order by ---\u003e6 xx 注意事项：当一条sql语句中有 group by 的话，select 后面只能跟分组函数和参与分组的字段。\n查出每个部门不同工作岗位的最高薪资 ,按照deptno和job分组，相同部门和相同岗位分为一组，找出分组后的最大工资。\n1 select DEPTNO,job ,max(sal)from emp group by DEPTNO,job; 1 2 3 4 5 6 select deptno,count(deptno),avg(sal) from emp group by deptno # COUNT 与分组函数一起使用，count(字段) 会得到组成员的数量 10,3,2916.666667 20,5,2175 30,6,1566.666667 having 如果想对分组数据再进行过滤需要使用having语句。\n找出每个部门的最高薪资，要求显示薪资大于2900的\n效率低\n1 select DEPTNO, max(sal) from emp group by DEPTNO having max(sal) \u003e2900 效率高\n1 SELECT DEPTNO,max(SAL) FROM EMP WHERE SAL \u003e2900 group by DEPTNO; 妙点在于 where 先执行，执行完后在分组。\n找出每个部门的平均薪资，要求显示薪资大于2000的\n1 select DEPTNO,avg(sal) from emp group by DEPTNO having avg(sal) \u003e2000 distinct 去重，只能用在所有字段的前面。当有多个字段在distinct的后面，可以把多个字段值看成一个整体去重。\n1 2 3 4 #查询有哪些上级领导 select distinct MGR from emp #查询岗位数量 distinct去除重复的岗位 SELECT COUNT(DISTINCT (JOB)) FROM EMP; 连接查询 笛卡尔积：当两张表进行查询的时候，没有任何条件进行限制，最终的查询结果条数是两张表记录条数的乘积。\n避免笛卡尔积：加条件过滤。加了条件也不会减少数据库查询匹配记录。\n双表查询原理：A表的第一条记录匹配B表的每一条记录，第二天记录匹配B表的每一条记录。产生笛卡尔积。可以理解为产生一个新的第三张表C，第三张表C，包含表A和表B的所有字段组合(A表8个字段，B表3个字段，那么C表就会产生11个字段，A表8条记录，B表3条记录，不加过滤条件 on 的话，就会产生24条记录。可以把他们组合的表来当成新的表来通过筛选)。\n内连接之等值连接 格式\n1 2 3 4 5 6 7 8 9 10 11 select xx from table_a inner join\ttable_b on 连接条件 where....\t查询每个员工的部门名称。要求显示员工名和部门名 内连接的inner 可以省略\n1 2 3 4 5 6 7 8 select e.ENAME,e.SAL,d.DNAME from emp e inner join dept d on e.DEPTNO = d.DEPTNO 内连接之非等值连接 找出每个员工的工资等级，要求显示员工名、工资、工资等级\n1 2 3 4 5 6 7 8 9 10 select e.ENAME,e.SAL,s.GRADE from emp e inner join salgrade s on e.sal \u003e= s.LOSAL and e.sal \u003c= s.HISAL; 内连接之自连接 自己连接自己，一张表看做两张表\n找出每个员工的上级领导，要求显示员工名和对应的领导名\n1 2 3 4 5 6 7 8 select e1.ename as '员工名' ,e2.ename as '领导' from emp e1 inner join emp e2 on e1.mgr = e2.empno +———–+——–+ | 员工名 | 领导 | +———–+——–+ | SMITH | FORD | | ALLEN | BLAKE | | WARD | BLAKE | | JONES | KING | | MARTIN | BLAKE | | BLAKE | KING | | CLARK | KING | | SCOTT | JONES | | TURNER | BLAKE | | ADAMS | SCOTT | | JAMES | BLAKE | | FORD | JONES | | MILLER | CLARK | +———–+——–+ 13 rows in set (0.00 sec)\n注意:king 没有匹配的领导，所以内连接没有查出来，内连接只会查询出匹配条件的数据\n外连接 什么是外连接，和内连接有什么区别？\n内连接：两张表没有主副之分，两张表是平等的。\n​\t假设A表和B表进行连接，使用内连接的话，凡是A表和B表能够匹配上的记录都查询出来。连接结果集只包含，符合连接条件的行。这就是内连接(个人理解：也就是说，A和B产生虚拟的第三张表，只会包含符合连接条件的行记录，A表逐行匹配B表，不符合连接条件的过滤，过滤，符合的放到第三张表上。就是内连接)\n外连接：\n​\t假设A表和B表进行连接，使用外连接的话，AB两张表有一张表是主表，一张表是副表，主要查询主表中的数据，捎带着查询副表，\n当副表中的数据没有和主表中的数据匹配上副表自动模拟出null与之匹配。(左表数据全部显示出来，符合条件的显示匹配副表的行，不符合条件的副表显示null)\n1 2 3 4 select e1.ENAME as '员工',e2.EMPNO as '领导' from emp e1 left join emp e2 on e1.MGR = e2.EMPNO +——–+——–+ | 员工 | 领导 | +——–+——–+ | SMITH | 7902 | | ALLEN | 7698 | | WARD | 7698 | | JONES | 7839 | | MARTIN | 7698 | | BLAKE | 7839 | | CLARK | 7839 | | SCOTT | 7566 | | KING | NULL | | TURNER | 7698 | | ADAMS | 7788 | | JAMES | 7698 | | FORD | 7566 | | MILLER | 7782 | +——–+——–+\n14 rows in set (0.00 sec)\n注意:king 没有匹配的领导，左外连接会把左表的数据都查出来，符合条件的就显示符合条件的值，不符合的显示null\n内连接 外连接总结\n内连接：只显示满足条件匹配出来的结果，不满足条件的就查询出来\n外连接：逐行匹配，满足条件的行就匹配出来，不满足的右表就显示null.\n找出哪个部门没有员工\n1 2 3 4 5 6 7 8 9 10 11 select d.* from dept d left join emp e on d.DEPTNO = e.DEPTNO where e.DEPTNO is null; 三张表的连接查询 找出每一个员工的部门名称以及工资等级\n1 2 3 4 5 SELECT e.ENAME, d.DNAME, s.GRADE FROM emp e JOIN dept d ON e.deptno = d.deptno join salgrade s on e.SAL between s.LOSAL and s.HISAL; 子查询 什么是子查询？子查询可以出现在哪里？\nselect 语句中嵌套 select 语句，被嵌套的select语句是子查询\n子查询可以出现在哪里\nselect\n​\t..(select)\nfrom\n​\t..(selecct)\nwherer\n​\t..(select)\nwhere 子句中使用子查询 找出高于平薪资的员工信息\n1 select ENAME from emp e WHERE e.sal \u003e (SELECT avg(sal) FROM emp ) from后面嵌套子查询 找出每个部门平均薪水的薪资等级\n1 2 3 SELECT t.deptno,t.avgsal, s.grade FROM (SELECT deptno, AVG(sal) AS 'avgsal' FROM emp GROUP BY deptno) t LEFT JOIN salgrade s ON t.avgsal BETWEEN s.losal AND s.hisal; select后面嵌套子查询 通过子查询，找出每个员工所在的部门名称，要求显示员工名和部门名。\n1 select e.ename ,(SELECT d.dname FROM dept d WHERE d.deptno = e.deptno) as dname from emp e UNION MySQL UNION 操作符用于连接两个以上的 SELECT 语句的结果组合到一个结果集合中。多个 SELECT 语句会删除重复的数据。\nunion 可以将两张没有关系的表查询结果放在一个结果集合中，in 和 or 关键字不行。\n找出工作岗位是SALESMAN 和MANAGER的员工\n1 2 3 4 5 6 7 8 SELECT e.ename FROM emp e WHERE e.job = 'SALESMAN' UNION SELECT e2.ename FROM emp e2 WHERE e2.job = 'MANAGER' UNION 只会选取多个表中不同的值。请使用 UNION ALL 来选取重复的值！\n1 2 3 4 5 6 SELECT e.ename FROM emp e UNION SELECT e2.ename FROM emp e2 +——–+ | ename | +——–+ | SMITH | | ALLEN | | WARD | | JONES | | MARTIN | | BLAKE | | CLARK | | SCOTT | | KING | | TURNER | | ADAMS | | JAMES | | FORD | | MILLER | +——–+ 14 rows in set (0.00 sec)\n选取所有的值，包含重复\n1 2 3 4 5 6 SELECT e.ename FROM emp e UNION ALL SELECT e2.ename FROM emp e2 +——–+ | ename | +——–+ | SMITH | | ALLEN | | WARD | | JONES | | MARTIN | | BLAKE | | CLARK | | SCOTT | | KING | | TURNER | | ADAMS | | JAMES | | FORD | | MILLER | | SMITH | | ALLEN | | WARD | | JONES | | MARTIN | | BLAKE | | CLARK | | SCOTT | | KING | | TURNER | | ADAMS | | JAMES | | FORD | | MILLER | +——–+ 28 rows in set (0.00 sec)\nlimit 取结果集中的部分数据。\nlimit startIndex,length\n第一个参数表示取值起始位置，limit 后面的0表示查询结果集中的第一条数据，1表示结果集的第二条数据。\n第二个表示取几个。\n取出工资前5名的员工\n1 SELECT * FROM emp ORDER BY sal DESC LIMIT 0,5 表的创建 建表语句的语法格式：\ncreate table 表名（\n字段名1 数据类型\n字段名2 数据类型\n字段名3 数据类型\n….\n）；\n关于MYSQL当中字段的数据类型？以下只说常见的\nint 整数型（java中的int）\nbigint 长整型（Java中的long）\nfloat 浮点型（Java中的float double）\nchar 定长浮点型（string）\nvarchar 可变长字符串（stringbuffer/stringBuilder）\ndata 日期类型（对应java.sql. data类型 ）\nBLOB 二进制大对象（存储图片、视频等流媒体信息）Binary large OBject （对应Java中的object）\nCLOB 字符大对象（存储较大文本，比如，可以存储4G的字符串） Character Large OBject（对应java中的Object）\nchar和varchar怎么选择？\n在实际的开发中，当某个字段中的数据长度不发生改变的时候，是定长的，性别等都是采用char。\n当一个字段的数据长度不确定，例如：简介、姓名等都是采用varchar。\ninsert 语法格式:\n​\tinsert into 表名（字段名1，字段名2，字段名3….）values(值1，值2，值3)\n要求：字段的数量和值的数量相同 ，并且数据类型要对应相同 。\n字段名顺序可以调换。但是字段1–\u003e对应值1，字段2对应—\u003e值2。字段的下标和值的下标一一对应。\ninsert格式1\n1 INSERT INTO t_student (id, sex, classno, birth,name) VALUES (1,'1','高三一班','19800901','张三') insert格式2 VALUES的顺序要与表格顺序一致，数量一致。\n1 INSERT INTO t_student VALUES (1,'李四','1','高三一班','19801010') insert格式3 一次插入多行数据\n1 INSERT INTO t_student VALUES (1,'李四','1','高三一班','19801010'),(1,'王五','1','高三一班','19801010'),(1,'赵六','1','高三一班','19801010') 表的复制 create table tab_name as select 语句; 将查询结果当作复制到一张新表。\n1 create TABLE emp1 as select e.empno,e.ename,e.sal from emp e 修改表的数据 语法格式：\n​\tupdate tab_name set 字段名1 = 值1，字段名2 = 值2… where条件\n注意：如果没有where条件，整个表数据都会更新。\n删除数据 语法格式：\ndelete from tab_name where\n注意 ：不加条件 删除整个表数据\n删除大表\ntruncate table teb_name;(截断，留下表头，不可回滚。永久丢失)\n约束 在创建表的时候，可以给表字段添加约束，保证表中数据合法性，完整性，有效性。\n常见约束\n非空约束（not null）：表示字段值不能为 null\n唯一约束（unique）:表示字段值不能重复，可以为null。\n主键约束pk（primary key）：表示字段既不能为null，也不能重复\n外键约束fk（foreign key）：\n唯一约束 1 2 3 4 5 create table t_user( id int, username varchar(50) UNIQUE ,#不能重复，可以为null usercode varchar(50) UNIQUE ); 1 2 3 4 5 6 create table t_user2( id int, username varchar(50) ,#不能重复，可以为null usercode varchar(50) , UNIQUE (usercode,username) # 两个字段联合起来不能重复 ); 主键约束 添加主键约束,任何一张表都应该有主键。主键表示行数据的唯一标识。一张表只能有一个主键。主键值和业务不挂钩\n1 2 3 4 5 6 7 create table t_user3( id int PRIMARY KEY AUTO_INCREMENT,#不能重复，不能为 null，自增 username varchar(50) , usercode varchar(50) ); insert INTO t_user3 VALUES (1,'李四','1001'); 外键约束 A表中的某个字段引用B表中的某个字段，A表为子表，B表为父表。（引用字段的表叫做子表，被引用字段的是父表）\n被引用的字段要具有唯一性，至少有UNIQUE约束。\n删除数据的时候先删除子表数据，再删除父表数据。\n插入数据的时候，先插入父表数据，然后子表。\n创建表的时候，先创建父表，再创建子表。\n删除表的时候，先删除子表，再删除父表。\n添加外键约束\n1 2 3 4 5 6 CREATE TABLE t_student( sid int PRIMARY KEY AUTO_INCREMENT, sname varchar(50), cno int , FOREIGN KEY (cno) REFERENCES t_class(cid) ) 事务 事务就是一组相关联的原子性的 SQL 语句，事务内的语句要么全部执行成功，要么全部执行失败回滚\n对于单条SQL语句，数据库系统自动将其作为一个事务执行，这种事务被称为隐式事务。\n要手动把多条SQL语句作为一个事务执行，使用BEGIN开启一个事务，使用COMMIT提交一个事务，这种事务被称为显式事务\n很显然多条SQL语句要想作为一个事务执行，就必须使用显式事务\nCOMMIT是指提交事务，即试图把事务内的所有SQL所做的修改永久保存。如果COMMIT语句执行失败了，整个事务也会失败。\n有些时候，我们希望主动让事务失败，这时，可以用ROLLBACK回滚事务，整个事务会失败：\n对于两个并发执行的事务，如果涉及到操作同一条记录的时候，可能会发生问题。因为并发操作会带来数据的不一致性，包括脏读、不可重复读、幻读等。数据库系统提供了隔离级别来让我们有针对性地选择事务的隔离级别，避免数据不一致的问题\n事务的条件 一般来说，事务是必须满足4个条件（ACID）：：原子性（Atomicity，或称不可分割性）、一致性（Consistency）、隔离性（Isolation，又称独立性）、持久性（Durability）\n**原子性：**一个事务（transaction）中的所有操作，要么全部完成，要么全部不完成，不会结束在中间某个环节。事务在执行过程中发生错误，会被回滚（Rollback）到事务开始前的状态，就像这个事务从来没有执行过一样。 **一致性：**在事务开始之前和事务结束以后，数据库的完整性没有被破坏。这表示写入的资料必须完全符合所有的预设规则，这包含资料的精确度、串联性以及后续数据库可以自发性地完成预定的工作。 **隔离性：**数据库允许多个并发事务同时对其数据进行读写和修改的能力，隔离性可以防止多个事务并发执行时由于交叉执行而导致数据的不一致。事务隔离分为不同级别，包括读未提交（Read uncommitted）、读提交（read committed）、可重复读（repeatable read）和串行化（Serializable）。 **持久性：**事务处理结束后，对数据的修改就是永久的，即便系统故障也不会丢失。 事务的隔离级别 mysql 的事务隔离级别是为了解决并发事务互相干扰的问题。隔离级别有四种\n读未提交（Read uncommitted）:该隔离级别的事务可以看到其他事务中未提交的数据。该隔离级别因为可以读取到其他事务中未提交的数据，而未提交的数据有可能会发生回滚。因此我们把该级别读取到的数据称之为脏数据。把这个问题称之为脏读。实际开发中很少使用。\n读提交（read committed）:该隔离级别的事务能读取到其他事务以及提交的数据(不能读取其他事务未提交的数据)，解决了脏读问题。但是两次使用相同的查询可能会得到不一样的结果。这种现象叫做不可重复读。(比如：事务第一次查询数据，其他事务未提交该数据，得到结果A，第二次执行同样的查询，其他事务提交该数据，得到不同的结果B。每次查询结果都有可能不一样)\n可重复读（repeatable read）:mysql默认的事务隔离级别，该级别保证了同一个事务中多次同样读取，读取到的记录结果是一致的(该事务结束前，读取到的是备份数据)。但是理论上可重复读还是无法解决另一个幻读问题(Phantom Read)。所谓幻读指的是某个事务在读取某个范围内的记录时，另外的一个事务又在该范围插入了新的记录，当之前的事务再次读取该范围的记录时，会产生幻行(Phantom Row)。InnoDB存储引擎通过多版本并发控制(MVCC，Multiversion Concurrency Control)解决了幻读问题；(幻读：同一个查询，在不同时间得到不同的结果，幻读读取到的是其他事务新增或者删除的“幻象”行数据。不发生在更新查询)\n和串行化也叫序列化（Serializable）:事务最高隔离级别，他会强制事务排序。但是执行效率低。使用场景不多。(操作同一个数据时，A事务不结束，B事务就排队等锁)\n注意：演示隔离级别，设置隔离级别后要退出登录，重进。隔离级别才生效。\n索引 添加索引是给某一个字段，或者某些字段添加索引\n索引就相当于一本数的目录，通过目录可以快速的找到对应的资源。查询一张表有两种方式，\n1 2 3 select ename from emp where ename = 'xxx'; #当ename 字段上没有添加索引的时候，以上sql会进行全表扫描，扫描ename字段中所有的值。 #当ename 字段添加索引，以上sql语句会根据索引扫描，快速定位 全表扫描：\n根据索引检索(缩小扫描范围)：索引虽然可以提高检索效率，但是不能随意添加索引，因为索引也是数据库当中的对象，也需要数据库不断的维护。是有维护成本的。比如，表中的经常被修改，这样就不适合添加索引，因为数据一旦修改，索引需要重新排序，进行维护。\n什么时候给字段添加索引：数据量庞大，该字段很少DML(增，删，改)操作,该字段经常出现再where子句中（经常查询哪个字段）\n注意：主键和具有unique约束的字段自动会添加索引。根据主键查询效率高。\n可以使用EXPLAIN来查看检索方式\nmysql\u003e EXPLAIN select ename,sal from emp WHERE sal = 5000; +—-+————-+——-+————+——+—————+——+———+——+——+———-+————-+ | id | select_type | table | partitions | type | possible_keys | key | key_len | ref | rows | filtered | Extra | +—-+————-+——-+————+——+—————+——+———+——+——+———-+————-+ | 1 | SIMPLE | emp | NULL | ALL | NULL | NULL | NULL | NULL | 14 | 10.00 | Using where | +—-+————-+——-+————+——+—————+——+———+——+——+———-+————-+ 1 row in set, 1 warning (0.00 sec)\ntype 字段代表检索类型。\n添加索引 给薪资字段添加索引。\n1 2 #给emp表的sal字段添加名为 emp_sal_index的索引 CREATE INDEX emp_sal_index ON emp(sal); 再次执行查询\nmysql\u003e EXPLAIN select ename,sal from emp WHERE sal = 5000; +—-+————-+——-+————+——+—————+—————+———+——-+——+———-+——-+ | id | select_type | table | partitions | type | possible_keys | key | key_len | ref | rows | filtered | Extra | +—-+————-+——-+————+——+—————+—————+———+——-+——+———-+——-+ | 1 | SIMPLE | emp | NULL | ref | emp_sal_index | emp_sal_index | 9 | const | 1 | 100.00 | NULL | +—-+————-+——-+————+——+—————+—————+———+——-+——+———-+——-+ 1 row in set, 1 warning (0.00 sec)\ntype改变了，匹配的行数rows也改变了\n删除索引 drop index 索引名称 on 表名\n索引原理\n通过B tree 缩小扫描范围，底层索引进行了排序，分析，索引会携带数据在表中的“物理地址”，最终通过索引检索到数据之后，获取到关联的物理地址，通过物理地址定位表中的数据，效率是最高的。\nSelect ename from emp where ename=’smith’;\n通过索引转换为：\nSelect ename from emp where 物理地址=0x33；\n索引的分类 单一索引：给单个字段添加索引\n复合索引：给多个字段联合起来添加一个索引\n主键索引：主键上会自动添加索引\n唯一索引：有unique约束的字段上会自动添加索引\n模糊查询会使索引失效。\n数据库设计三范式 什么是设计范式 ：设计表的依据。按照三范式设计的表不会出现数据冗余。\n三范式都是哪些。\n第一范式：任何一张表都应该有主键，并且每一个字段原子性不可再分\n第二范式：建立在第一范式的基础上，所有非主键字段完全依赖主键，(没有复合主键，只有单一主键 )不能产生产生部分依赖。(所有字段依赖于一个主键，不依赖两个主键)\n第三范式：第三范式建立在第二范式基础上，所有非主键字段直接依赖主键，不能产生传递依赖。\n只要遵守三范式，表数据就不会出现冗余。\n提醒：在实际开发中，以满足客户的需求为主，有的时候会拿冗余换执行速度。\n一对一的设计：主键共享，外键唯一(fk+unique);\n一对多设计：两张表，多的表加外键。\n多对多设计：三张表，关系表两个外键\n",
+  "wordCount" : "8477",
+  "inLanguage": "en",
+  "datePublished": "2020-07-14T14:14:14+08:00",
+  "dateModified": "2020-07-14T14:14:14+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "Train"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://train0405.github.io/posts/tech/mysql%E7%AC%94%E8%AE%B0/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Train's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://train0405.github.io/img/avatar.png"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://train0405.github.io/" accesskey="h" title="Train&#39;s Blog (Alt + H)">
+            <img src="https://train0405.github.io/img/mona-whisper.gif" alt="logo" aria-label="logo"
+                 height="35">Train&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://train0405.github.io/search" title="🔍 搜索 (Alt &#43; /)" accesskey=/>
+                <span>🔍 搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://train0405.github.io/" title="🏠 主页">
+                <span>🏠 主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://train0405.github.io/posts" title="📚 文章">
+                <span>📚 文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://train0405.github.io/tags" title="🧩 标签">
+                <span>🧩 标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://train0405.github.io/archives/" title="⏱️ 时间轴">
+                <span>⏱️ 时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://train0405.github.io/about" title="🙋🏻‍♂️ 关于">
+                <span>🙋🏻‍♂️ 关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main page">
+<article class="post-single">
+    <div id="single-content">
+        <header class="post-header">
+            <div class="breadcrumbs"><a href="https://train0405.github.io/">主页</a>&nbsp;»&nbsp;<a href="https://train0405.github.io/posts/">📚文章</a>&nbsp;»&nbsp;<a href="https://train0405.github.io/posts/tech/">👨🏻‍💻 技术</a></div>
+            <h1 class="post-title">
+                Mysql笔记
+            </h1>
+            <div class="post-meta">创建:&nbsp;<span title='2020-07-14 14:14:14 +0800 CST'>2020-07-14</span>&nbsp;|&nbsp;更新:&nbsp;2020-07-14&nbsp;|&nbsp;字数:&nbsp;8477字&nbsp;|&nbsp;时长:&nbsp;17分钟&nbsp;|&nbsp;
+作者:&nbsp;Train
+
+
+
+                &nbsp;|&nbsp;标签: &nbsp;
+                <ul class="post-tags-meta">
+                    <a href="https://train0405.github.io/tags/mysql/">mysql</a>
+                </ul>
+
+                
+                <span id="busuanzi_container_page_pv">
+                &nbsp;| 访问: <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+</div>
+        </header> 
+        <aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">文章目录</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#mysql%e7%ac%94%e8%ae%b0" aria-label="mysql笔记">mysql笔记</a><ul>
+                        <ul>
+                        
+                <li>
+                    <a href="#sql-%e8%af%ad%e5%8f%a5%e5%88%86%e7%b1%bb" aria-label="SQL 语句分类">SQL 语句分类</a></li>
+                <li>
+                    <a href="#%e5%91%bd%e4%bb%a4" aria-label="命令">命令</a></li>
+                <li>
+                    <a href="#%e6%9f%a5%e8%af%a2%e8%af%ad%e5%8f%a5" aria-label="查询语句">查询语句</a></li>
+                <li>
+                    <a href="#%e6%9d%a1%e4%bb%b6%e6%9f%a5%e8%af%a2" aria-label="条件查询">条件查询</a><ul>
+                        
+                <li>
+                    <a href="#%e6%a8%a1%e7%b3%8a%e6%9f%a5%e8%af%a2" aria-label="模糊查询"><strong>模糊查询</strong></a></li>
+                <li>
+                    <a href="#%e6%8e%92%e5%ba%8f" aria-label="排序">排序</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%88%86%e7%bb%84%e5%87%bd%e6%95%b0" aria-label="分组函数">分组函数</a></li>
+                <li>
+                    <a href="#%e5%88%86%e7%bb%84%e6%9f%a5%e8%af%a2group-by" aria-label="分组查询group by">分组查询group by</a></li>
+                <li>
+                    <a href="#having" aria-label="having">having</a></li>
+                <li>
+                    <a href="#distinct" aria-label="distinct">distinct</a></li>
+                <li>
+                    <a href="#%e8%bf%9e%e6%8e%a5%e6%9f%a5%e8%af%a2" aria-label="连接查询">连接查询</a><ul>
+                        
+                <li>
+                    <a href="#%e5%86%85%e8%bf%9e%e6%8e%a5%e4%b9%8b%e7%ad%89%e5%80%bc%e8%bf%9e%e6%8e%a5" aria-label="内连接之等值连接">内连接之等值连接</a></li>
+                <li>
+                    <a href="#%e5%86%85%e8%bf%9e%e6%8e%a5%e4%b9%8b%e9%9d%9e%e7%ad%89%e5%80%bc%e8%bf%9e%e6%8e%a5" aria-label="内连接之非等值连接">内连接之非等值连接</a></li>
+                <li>
+                    <a href="#%e5%86%85%e8%bf%9e%e6%8e%a5%e4%b9%8b%e8%87%aa%e8%bf%9e%e6%8e%a5" aria-label="内连接之自连接">内连接之自连接</a></li>
+                <li>
+                    <a href="#%e5%a4%96%e8%bf%9e%e6%8e%a5" aria-label="外连接">外连接</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%b8%89%e5%bc%a0%e8%a1%a8%e7%9a%84%e8%bf%9e%e6%8e%a5%e6%9f%a5%e8%af%a2" aria-label="三张表的连接查询">三张表的连接查询</a></li>
+                <li>
+                    <a href="#%e5%ad%90%e6%9f%a5%e8%af%a2" aria-label="子查询">子查询</a><ul>
+                        
+                <li>
+                    <a href="#where-%e5%ad%90%e5%8f%a5%e4%b8%ad%e4%bd%bf%e7%94%a8%e5%ad%90%e6%9f%a5%e8%af%a2" aria-label="where 子句中使用子查询">where 子句中使用子查询</a></li>
+                <li>
+                    <a href="#from%e5%90%8e%e9%9d%a2%e5%b5%8c%e5%a5%97%e5%ad%90%e6%9f%a5%e8%af%a2" aria-label="from后面嵌套子查询">from后面嵌套子查询</a></li>
+                <li>
+                    <a href="#select%e5%90%8e%e9%9d%a2%e5%b5%8c%e5%a5%97%e5%ad%90%e6%9f%a5%e8%af%a2" aria-label="select后面嵌套子查询">select后面嵌套子查询</a></li></ul>
+                </li>
+                <li>
+                    <a href="#union" aria-label="UNION">UNION</a></li>
+                <li>
+                    <a href="#limit" aria-label="limit">limit</a></li>
+                <li>
+                    <a href="#%e8%a1%a8%e7%9a%84%e5%88%9b%e5%bb%ba" aria-label="表的创建">表的创建</a><ul>
+                        
+                <li>
+                    <a href="#insert" aria-label="insert">insert</a></li>
+                <li>
+                    <a href="#%e8%a1%a8%e7%9a%84%e5%a4%8d%e5%88%b6" aria-label="表的复制">表的复制</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%bf%ae%e6%94%b9%e8%a1%a8%e7%9a%84%e6%95%b0%e6%8d%ae" aria-label="修改表的数据">修改表的数据</a></li>
+                <li>
+                    <a href="#%e5%88%a0%e9%99%a4%e6%95%b0%e6%8d%ae" aria-label="删除数据">删除数据</a></li>
+                <li>
+                    <a href="#%e7%ba%a6%e6%9d%9f" aria-label="约束">约束</a><ul>
+                        
+                <li>
+                    <a href="#%e5%94%af%e4%b8%80%e7%ba%a6%e6%9d%9f" aria-label="唯一约束"><strong>唯一约束</strong></a></li>
+                <li>
+                    <a href="#%e4%b8%bb%e9%94%ae%e7%ba%a6%e6%9d%9f" aria-label="主键约束">主键约束</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%a4%96%e9%94%ae%e7%ba%a6%e6%9d%9f" aria-label="外键约束">外键约束</a></li>
+                <li>
+                    <a href="#%e4%ba%8b%e5%8a%a1" aria-label="事务">事务</a><ul>
+                        
+                <li>
+                    <a href="#%e4%ba%8b%e5%8a%a1%e7%9a%84%e6%9d%a1%e4%bb%b6" aria-label="事务的条件"><strong>事务的条件</strong></a></li>
+                <li>
+                    <a href="#%e4%ba%8b%e5%8a%a1%e7%9a%84%e9%9a%94%e7%a6%bb%e7%ba%a7%e5%88%ab" aria-label="事务的隔离级别">事务的隔离级别</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e7%b4%a2%e5%bc%95" aria-label="索引">索引</a><ul>
+                        
+                <li>
+                    <a href="#%e6%b7%bb%e5%8a%a0%e7%b4%a2%e5%bc%95" aria-label="添加索引">添加索引</a></li>
+                <li>
+                    <a href="#%e5%88%a0%e9%99%a4%e7%b4%a2%e5%bc%95" aria-label="删除索引">删除索引</a></li>
+                <li>
+                    <a href="#%e7%b4%a2%e5%bc%95%e7%9a%84%e5%88%86%e7%b1%bb" aria-label="索引的分类">索引的分类</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e6%95%b0%e6%8d%ae%e5%ba%93%e8%ae%be%e8%ae%a1%e4%b8%89%e8%8c%83%e5%bc%8f" aria-label="数据库设计三范式">数据库设计三范式</a>
+                </li>
+            </ul>
+            </ul>
+            </li>
+            </ul>
+        </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+        
+        activeElement = elements[0];
+        const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+        document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+    }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        activeElement = Array.from(elements).find((element) => {
+            if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                return element;
+            }
+        }) || activeElement
+
+        elements.forEach(element => {
+            const id = encodeURI(element.getAttribute('id')).toLowerCase();
+            if (element === activeElement){
+                document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+            } else {
+                document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+            }
+        })
+    }, false);
+
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;
+    }
+</script>
+        
+        <div class="post-content"><meta name="referrer" content="no-referrer" />
+<h1 id="mysql笔记">mysql笔记<a hidden class="anchor" aria-hidden="true" href="#mysql笔记">#</a></h1>
+<h3 id="sql-语句分类">SQL 语句分类<a hidden class="anchor" aria-hidden="true" href="#sql-语句分类">#</a></h3>
+<p>DQL（数据查询语言）：查询语句，凡是select语句都是DQL</p>
+<p>DML（数据操作语言）：insert delete update，对表中的数据进行增删改</p>
+<p>DDL（数据定义语言）：create drop alter，对表结构的增删改</p>
+<p>TCL（事务控制语言）：commit提交事务，rollback回滚事务。（T：transaction）</p>
+<p>DCL（数据控制语言）：grant授权、revoke撤销权限等。</p>
+<h3 id="命令">命令<a hidden class="anchor" aria-hidden="true" href="#命令">#</a></h3>
+<p>创建数据库 使用数据库 显示表 删除数据库 查看表结构 查看mysql版本 查看表创建时的语句</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-mysql" data-lang="mysql"><span style="display:flex;"><span> <span style="color:#66d9ef">create</span> <span style="color:#66d9ef">database</span> mydb
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">use</span> mydb
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">show</span> <span style="color:#66d9ef">tables</span> 
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">drop</span> <span style="color:#66d9ef">database</span> mydb
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">desc</span> table_name
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">select</span> <span style="color:#a6e22e">version</span>()
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">show</span> <span style="color:#66d9ef">create</span> <span style="color:#66d9ef">table</span> table_name
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="查询语句">查询语句<a hidden class="anchor" aria-hidden="true" href="#查询语句">#</a></h3>
+<p>语法格式</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-mysql" data-lang="mysql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> <span style="color:#960050;background-color:#1e0010">字段</span><span style="color:#ae81ff">1</span>,<span style="color:#960050;background-color:#1e0010">字段</span><span style="color:#ae81ff">2</span>,... <span style="color:#66d9ef">from</span> table_name;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>给查询字段起别名</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-mysql" data-lang="mysql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> EMPNO <span style="color:#66d9ef">AS</span> <span style="color:#e6db74">&#39;编号&#39;</span>,ENAME <span style="color:#66d9ef">as</span> <span style="color:#e6db74">&#39;姓名&#39;</span> <span style="color:#66d9ef">from</span> emp;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>给查询字段做运算</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-MYSQL" data-lang="MYSQL"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> EMPNO <span style="color:#66d9ef">AS</span> <span style="color:#e6db74">&#39;编号&#39;</span>,ENAME <span style="color:#66d9ef">as</span> <span style="color:#e6db74">&#39;姓名&#39;</span>,sal<span style="color:#f92672">*</span><span style="color:#ae81ff">12</span> <span style="color:#66d9ef">as</span> <span style="color:#e6db74">&#39;年薪&#39;</span> <span style="color:#66d9ef">from</span> emp;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查询所有(实际开发中，效率低，不使用)</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-mysql" data-lang="mysql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">from</span> emp
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="条件查询">条件查询<a hidden class="anchor" aria-hidden="true" href="#条件查询">#</a></h3>
+<p>语法格式 查询字符串类型字段需要加上单引号</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-mysql" data-lang="mysql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> 
+</span></span><span style="display:flex;"><span>	<span style="color:#960050;background-color:#1e0010">字段</span>,<span style="color:#960050;background-color:#1e0010">字段</span>...
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span>
+</span></span><span style="display:flex;"><span>	table_name
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">where</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#960050;background-color:#1e0010">条件</span>;	
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>找出大于3000的工资的员工  大于等于 &gt;=    不等于&lt;&gt;  小于&lt;</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-MYSQL" data-lang="MYSQL"><span style="display:flex;"><span><span style="color:#66d9ef">select</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span>
+</span></span><span style="display:flex;"><span>	emp
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">where</span>
+</span></span><span style="display:flex;"><span>    sal <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">3000</span>;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查询工资大于等于1000 小于等于3000 BETWEEN&hellip;AND&hellip;. 两个值之间 闭区间[1000,3000]</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-MYSQL" data-lang="MYSQL"><span style="display:flex;"><span><span style="color:#66d9ef">select</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span>
+</span></span><span style="display:flex;"><span>	emp
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">where</span>
+</span></span><span style="display:flex;"><span>    sal  <span style="color:#66d9ef">BETWEEN</span> <span style="color:#ae81ff">1000</span> <span style="color:#66d9ef">AND</span> <span style="color:#ae81ff">3000</span>;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>and</td>
+<td>并且</td>
+</tr>
+<tr>
+<td>or</td>
+<td>或者</td>
+</tr>
+<tr>
+<td>in</td>
+<td>包含 相当于多个or</td>
+</tr>
+<tr>
+<td>not</td>
+<td>not 可以取非，主要用在 is 或者 in 中 （where id not in (1,2,3)）</td>
+</tr>
+<tr>
+<td>like</td>
+<td>模糊查询</td>
+</tr>
+<tr>
+<td>is null</td>
+<td>为 null(is not null 不为空)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>找出工作岗位时 MANAGER和SALESMAN的员工</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-MYSQL" data-lang="MYSQL"><span style="display:flex;"><span><span style="color:#66d9ef">select</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span>
+</span></span><span style="display:flex;"><span>	emp
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">where</span>
+</span></span><span style="display:flex;"><span>    JOB <span style="color:#66d9ef">in</span> (<span style="color:#e6db74">&#39;SALESMAN&#39;</span>,<span style="color:#e6db74">&#39;MANAGER&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># OR
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">select</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span>
+</span></span><span style="display:flex;"><span>	emp
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">where</span>
+</span></span><span style="display:flex;"><span>    JOB<span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;SALESMAN&#39;</span><span style="color:#66d9ef">OR</span> JOB<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;MANAGER&#39;</span>;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>and 和 or 联合起来用 ：找出薪资大于2000的，并且部门编号是20 或者 30 的员工</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-MYSQL" data-lang="MYSQL"><span style="display:flex;"><span><span style="color:#66d9ef">select</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span>
+</span></span><span style="display:flex;"><span>	emp
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">where</span>
+</span></span><span style="display:flex;"><span>    sal <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2000</span> <span style="color:#66d9ef">and</span>  DEPTNO <span style="color:#66d9ef">in</span>(<span style="color:#ae81ff">20</span>,<span style="color:#ae81ff">30</span>);
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># OR
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">select</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span>
+</span></span><span style="display:flex;"><span>	emp
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">where</span>
+</span></span><span style="display:flex;"><span>    sal <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2000</span> <span style="color:#66d9ef">and</span> ( DEPTNO<span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span> <span style="color:#66d9ef">or</span> DEPTNO<span style="color:#f92672">=</span><span style="color:#ae81ff">30</span>);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>错误写法:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-mysql" data-lang="mysql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span>
+</span></span><span style="display:flex;"><span>	emp
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">where</span>
+</span></span><span style="display:flex;"><span>    sal <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2000</span> <span style="color:#66d9ef">and</span>  DEPTNO<span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span> <span style="color:#66d9ef">or</span> DEPTNO<span style="color:#f92672">=</span><span style="color:#ae81ff">30</span>;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>错误分析：and和or放在一起是，and先执行。 sal &gt; 2000 and  DEPTNO= 20  先执行，然后再把 or DEPTNO=30的员工查出来。and 优先级高，与前后顺序无关。</p>
+<p>当优先级不确定的时候加小括号()。优先执行。</p>
+<h4 id="模糊查询"><strong>模糊查询</strong><a hidden class="anchor" aria-hidden="true" href="#模糊查询">#</a></h4>
+<p>%:代表任意多个字符</p>
+<p>_:代表任意一个字符</p>
+<p>找出名字中含有O的</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-mysql" data-lang="mysql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span>
+</span></span><span style="display:flex;"><span>	emp
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">where</span>
+</span></span><span style="display:flex;"><span>     ENAME <span style="color:#66d9ef">like</span> <span style="color:#e6db74">&#39;%o%&#39;</span>;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="排序">排序<a hidden class="anchor" aria-hidden="true" href="#排序">#</a></h4>
+<p>order by默认升序 asc 升序 desc降序 order by是最后执行的</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-MYSQL" data-lang="MYSQL"><span style="display:flex;"><span><span style="color:#66d9ef">select</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span>
+</span></span><span style="display:flex;"><span>	emp
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">order</span> <span style="color:#66d9ef">by</span> sal
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h3 id="分组函数">分组函数<a hidden class="anchor" aria-hidden="true" href="#分组函数">#</a></h3>
+<p>记住：所有的分组函数都是对 “一组”数据进行操作</p>
+<p>分组函数也叫聚合函数，多行处理函数，意思就是输入多行，输出一行。分组函数一共5个，没有别的</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-MYSQL" data-lang="MYSQL"><span style="display:flex;"><span><span style="color:#75715e"># 计数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">select</span> <span style="color:#a6e22e">count</span>(<span style="color:#f92672">*</span>) <span style="color:#66d9ef">from</span> emp;
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 求和
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> <span style="color:#66d9ef">select</span> <span style="color:#a6e22e">sum</span>(sal) <span style="color:#66d9ef">from</span> emp;
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 最大值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">select</span> <span style="color:#a6e22e">max</span>(sal) <span style="color:#66d9ef">from</span> emp;
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 最小值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">select</span> <span style="color:#a6e22e">min</span>(sal) <span style="color:#66d9ef">from</span> emp;
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 平均值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">select</span> <span style="color:#a6e22e">avg</span>(sal) <span style="color:#66d9ef">from</span> emp;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>特点：分组函数运算时自动忽略 null，null不参与运算。分组函数不把 null 放在眼里。</p>
+<p>计算每个员工的年薪</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-MYSQL" data-lang="MYSQL"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> ENAME,(sal<span style="color:#f92672">+</span><span style="color:#a6e22e">ifnull</span>(comm,<span style="color:#ae81ff">0</span>))<span style="color:#f92672">*</span><span style="color:#ae81ff">12</span> <span style="color:#66d9ef">as</span> <span style="color:#e6db74">&#39;年薪&#39;</span> <span style="color:#66d9ef">from</span> emp;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意事项：和 null 值做运算，结果一定为 null 。ifnull(param1,param2)函数第一个参数为字段，第二个参数为预值。若字段值为 null。</p>
+<p>则用预值处理。</p>
+<p>规则：分组函数不能直接使用在 where 子句当中</p>
+<p>count(*):统计总数量</p>
+<p>count(某个字段):统计某个字段不为 null 的总数量</p>
+<h3 id="分组查询group-by">分组查询group by<a hidden class="anchor" aria-hidden="true" href="#分组查询group-by">#</a></h3>
+<p>group by :按照某个字段或者某些字段进行分组。</p>
+<p>having ：having 是对分组之后的数据进行再次过滤。</p>
+<p>找出每个岗位的最高薪资</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-mysql" data-lang="mysql"><span style="display:flex;"><span><span style="color:#75715e">#  where先执行，然后执行进行group by分组，然后 select 每一组的最大工资。执行顺序 先 from 再group by 再select max()
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># 分组函数永远都是在group by执行后再执行。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># 当sql语句没有 group by 的时候，整张表的数据自成一组。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># 分组函数必须在分完组后才能用
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># 分组函数不能放在 where 后面 。是因为在where max(字段) 的时候 group by 还没有执行
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">select</span> job ,<span style="color:#a6e22e">max</span>(sal) <span style="color:#66d9ef">from</span> emp <span style="color:#66d9ef">group</span> <span style="color:#66d9ef">by</span> job
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>执行顺序</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>select------5
+</span></span><span style="display:flex;"><span>    xx
+</span></span><span style="display:flex;"><span>from--------&gt;1
+</span></span><span style="display:flex;"><span>    xx
+</span></span><span style="display:flex;"><span>where-------&gt;2
+</span></span><span style="display:flex;"><span>    xx
+</span></span><span style="display:flex;"><span>group by ---&gt;3
+</span></span><span style="display:flex;"><span>    xx
+</span></span><span style="display:flex;"><span>having -----&gt;4
+</span></span><span style="display:flex;"><span>    xx
+</span></span><span style="display:flex;"><span>order by ---&gt;6
+</span></span><span style="display:flex;"><span>    xx
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意事项：当一条sql语句中有 group by 的话，select 后面只能跟分组函数和参与分组的字段。</p>
+<p>查出每个部门不同工作岗位的最高薪资 ,按照deptno和job分组，相同部门和相同岗位分为一组，找出分组后的最大工资。</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-MYSQL" data-lang="MYSQL"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> DEPTNO,job ,<span style="color:#a6e22e">max</span>(sal)<span style="color:#66d9ef">from</span> emp <span style="color:#66d9ef">group</span> <span style="color:#66d9ef">by</span> DEPTNO,job;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>select deptno,count(deptno),avg(sal) from emp group by deptno
+</span></span><span style="display:flex;"><span># COUNT 与分组函数一起使用，count(字段) 会得到组成员的数量
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>10,3,2916.666667
+</span></span><span style="display:flex;"><span>20,5,2175
+</span></span><span style="display:flex;"><span>30,6,1566.666667
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="having">having<a hidden class="anchor" aria-hidden="true" href="#having">#</a></h3>
+<p>如果想对分组数据再进行过滤需要使用having语句。</p>
+<p>找出每个部门的最高薪资，要求显示薪资大于2900的</p>
+<p>效率低</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-MYSQL" data-lang="MYSQL"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> DEPTNO, <span style="color:#a6e22e">max</span>(sal) <span style="color:#66d9ef">from</span> emp <span style="color:#66d9ef">group</span> <span style="color:#66d9ef">by</span> DEPTNO <span style="color:#66d9ef">having</span> <span style="color:#a6e22e">max</span>(sal) <span style="color:#f92672">&gt;</span><span style="color:#ae81ff">2900</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>效率高</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-MYSQL" data-lang="MYSQL"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> DEPTNO,<span style="color:#a6e22e">max</span>(SAL) <span style="color:#66d9ef">FROM</span> EMP <span style="color:#66d9ef">WHERE</span> SAL <span style="color:#f92672">&gt;</span><span style="color:#ae81ff">2900</span> <span style="color:#66d9ef">group</span> <span style="color:#66d9ef">by</span> DEPTNO;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>妙点在于 where 先执行，执行完后在分组。</p>
+<p>找出每个部门的平均薪资，要求显示薪资大于2000的</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-MYSQL" data-lang="MYSQL"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> DEPTNO,<span style="color:#a6e22e">avg</span>(sal) <span style="color:#66d9ef">from</span> emp <span style="color:#66d9ef">group</span> <span style="color:#66d9ef">by</span> DEPTNO <span style="color:#66d9ef">having</span> <span style="color:#a6e22e">avg</span>(sal) <span style="color:#f92672">&gt;</span><span style="color:#ae81ff">2000</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="distinct">distinct<a hidden class="anchor" aria-hidden="true" href="#distinct">#</a></h3>
+<p>去重，只能用在所有字段的前面。当有多个字段在distinct的后面，可以把多个字段值看成一个整体去重。</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-MYSQL" data-lang="MYSQL"><span style="display:flex;"><span><span style="color:#75715e">#查询有哪些上级领导
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">select</span> <span style="color:#66d9ef">distinct</span> MGR <span style="color:#66d9ef">from</span> emp
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#查询岗位数量 distinct去除重复的岗位
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#a6e22e">COUNT</span>(<span style="color:#66d9ef">DISTINCT</span> (JOB)) <span style="color:#66d9ef">FROM</span> EMP;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="连接查询">连接查询<a hidden class="anchor" aria-hidden="true" href="#连接查询">#</a></h3>
+<p>笛卡尔积：当两张表进行查询的时候，没有任何条件进行限制，最终的查询结果条数是两张表记录条数的乘积。</p>
+<p>避免笛卡尔积：加条件过滤。加了条件也不会减少数据库查询匹配记录。</p>
+<p>双表查询原理：A表的第一条记录匹配B表的每一条记录，第二天记录匹配B表的每一条记录。产生笛卡尔积。可以理解为产生一个新的第三张表C，第三张表C，包含表A和表B的所有字段组合(A表8个字段，B表3个字段，那么C表就会产生11个字段，A表8条记录，B表3条记录，不加过滤条件 on 的话，就会产生24条记录。可以把他们组合的表来当成新的表来通过筛选)。</p>
+<h4 id="内连接之等值连接">内连接之等值连接<a hidden class="anchor" aria-hidden="true" href="#内连接之等值连接">#</a></h4>
+<p>格式</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>select 
+</span></span><span style="display:flex;"><span>	xx
+</span></span><span style="display:flex;"><span>from
+</span></span><span style="display:flex;"><span>	table_a
+</span></span><span style="display:flex;"><span>inner join	
+</span></span><span style="display:flex;"><span>	table_b
+</span></span><span style="display:flex;"><span>on 
+</span></span><span style="display:flex;"><span>	连接条件
+</span></span><span style="display:flex;"><span>where....	
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查询每个员工的部门名称。要求显示员工名和部门名 内连接的inner 可以省略</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-MYSQL" data-lang="MYSQL"><span style="display:flex;"><span><span style="color:#66d9ef">select</span>
+</span></span><span style="display:flex;"><span>	e.ENAME,e.SAL,d.DNAME
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span>
+</span></span><span style="display:flex;"><span>	emp e
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">inner</span> <span style="color:#66d9ef">join</span>
+</span></span><span style="display:flex;"><span>	dept d
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">on</span>
+</span></span><span style="display:flex;"><span>	e.DEPTNO <span style="color:#f92672">=</span> d.DEPTNO
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="内连接之非等值连接">内连接之非等值连接<a hidden class="anchor" aria-hidden="true" href="#内连接之非等值连接">#</a></h4>
+<p>找出每个员工的工资等级，要求显示员工名、工资、工资等级</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-MYSQL" data-lang="MYSQL"><span style="display:flex;"><span><span style="color:#66d9ef">select</span>
+</span></span><span style="display:flex;"><span>    e.ENAME,e.SAL,s.GRADE
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span>
+</span></span><span style="display:flex;"><span>    emp e
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">inner</span> <span style="color:#66d9ef">join</span>
+</span></span><span style="display:flex;"><span>    salgrade s
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">on</span>
+</span></span><span style="display:flex;"><span>    e.sal <span style="color:#f92672">&gt;=</span> s.LOSAL
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">and</span> 
+</span></span><span style="display:flex;"><span>    e.sal <span style="color:#f92672">&lt;=</span> s.HISAL;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="内连接之自连接">内连接之自连接<a hidden class="anchor" aria-hidden="true" href="#内连接之自连接">#</a></h4>
+<p>自己连接自己，一张表看做两张表</p>
+<p>找出每个员工的上级领导，要求显示员工名和对应的领导名</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-mysql" data-lang="mysql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span>
+</span></span><span style="display:flex;"><span>    e1.ename <span style="color:#66d9ef">as</span> <span style="color:#e6db74">&#39;员工名&#39;</span> ,e2.ename <span style="color:#66d9ef">as</span> <span style="color:#e6db74">&#39;领导&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span>
+</span></span><span style="display:flex;"><span>    emp e1
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">inner</span> <span style="color:#66d9ef">join</span>
+</span></span><span style="display:flex;"><span>    emp e2
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">on</span>
+</span></span><span style="display:flex;"><span>    e1.mgr <span style="color:#f92672">=</span> e2.empno
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>+&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&ndash;+
+| 员工名    | 领导   |
++&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&ndash;+
+| SMITH     | FORD   |
+| ALLEN     | BLAKE  |
+| WARD      | BLAKE  |
+| JONES     | KING   |
+| MARTIN    | BLAKE  |
+| BLAKE     | KING   |
+| CLARK     | KING   |
+| SCOTT     | JONES  |
+| TURNER    | BLAKE  |
+| ADAMS     | SCOTT  |
+| JAMES     | BLAKE  |
+| FORD      | JONES  |
+| MILLER    | CLARK  |
++&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&ndash;+
+13 rows in set (0.00 sec)</p>
+<p>注意:king 没有匹配的领导，所以内连接没有查出来，内连接只会查询出匹配条件的数据</p>
+<h4 id="外连接">外连接<a hidden class="anchor" aria-hidden="true" href="#外连接">#</a></h4>
+<p>什么是外连接，和内连接有什么区别？</p>
+<p>内连接：两张表没有主副之分，两张表是平等的。</p>
+<p>​	假设A表和B表进行连接，使用内连接的话，凡是A表和B表能够匹配上的记录都查询出来。连接结果集只包含，符合连接条件的行。这就是内连接(个人理解：也就是说，A和B产生虚拟的第三张表，只会包含符合连接条件的行记录，A表逐行匹配B表，不符合连接条件的过滤，过滤，符合的放到第三张表上。就是内连接)</p>
+<p>外连接：</p>
+<p>​	假设A表和B表进行连接，使用外连接的话，AB两张表有一张表是主表，一张表是副表，主要查询主表中的数据，捎带着查询副表，</p>
+<p>当副表中的数据没有和主表中的数据匹配上副表自动模拟出null与之匹配。(左表数据全部显示出来，符合条件的显示匹配副表的行，不符合条件的副表显示null)</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-MYSQL" data-lang="MYSQL"><span style="display:flex;"><span><span style="color:#66d9ef">select</span>
+</span></span><span style="display:flex;"><span>    e1.ENAME <span style="color:#66d9ef">as</span> <span style="color:#e6db74">&#39;员工&#39;</span>,e2.EMPNO <span style="color:#66d9ef">as</span> <span style="color:#e6db74">&#39;领导&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span> emp e1 <span style="color:#66d9ef">left</span> <span style="color:#66d9ef">join</span> emp e2 <span style="color:#66d9ef">on</span> e1.MGR <span style="color:#f92672">=</span> e2.EMPNO
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>+&mdash;&mdash;&ndash;+&mdash;&mdash;&ndash;+
+| 员工   | 领导   |
++&mdash;&mdash;&ndash;+&mdash;&mdash;&ndash;+
+| SMITH  |   7902 |
+| ALLEN  |   7698 |
+| WARD   |   7698 |
+| JONES  |   7839 |
+| MARTIN |   7698 |
+| BLAKE  |   7839 |
+| CLARK  |   7839 |
+| SCOTT  |   7566 |
+| KING   |   NULL |
+| TURNER |   7698 |
+| ADAMS  |   7788 |
+| JAMES  |   7698 |
+| FORD   |   7566 |
+| MILLER |   7782 |
++&mdash;&mdash;&ndash;+&mdash;&mdash;&ndash;+</p>
+<p>14 rows in set (0.00 sec)</p>
+<p>注意:king 没有匹配的领导，左外连接会把左表的数据都查出来，符合条件的就显示符合条件的值，不符合的显示null</p>
+<p><strong>内连接 外连接总结</strong></p>
+<p>内连接：只显示满足条件匹配出来的结果，不满足条件的就查询出来</p>
+<p>外连接：逐行匹配，满足条件的行就匹配出来，不满足的右表就显示null.</p>
+<p>找出哪个部门没有员工</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-MYSQL" data-lang="MYSQL"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> 
+</span></span><span style="display:flex;"><span>    d.<span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span> 
+</span></span><span style="display:flex;"><span>    dept d 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">left</span> <span style="color:#66d9ef">join</span> 
+</span></span><span style="display:flex;"><span>        emp e 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">on</span> 
+</span></span><span style="display:flex;"><span>    d.DEPTNO <span style="color:#f92672">=</span> e.DEPTNO 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">where</span> 
+</span></span><span style="display:flex;"><span>    e.DEPTNO 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">is</span> <span style="color:#66d9ef">null</span>;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="三张表的连接查询">三张表的连接查询<a hidden class="anchor" aria-hidden="true" href="#三张表的连接查询">#</a></h3>
+<p>找出每一个员工的部门名称以及工资等级</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-MYSQL" data-lang="MYSQL"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> e.ENAME, d.DNAME, s.GRADE
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> emp e
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">JOIN</span> dept d
+</span></span><span style="display:flex;"><span>                   <span style="color:#66d9ef">ON</span> e.deptno <span style="color:#f92672">=</span> d.deptno
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">join</span> salgrade s <span style="color:#66d9ef">on</span> e.SAL <span style="color:#66d9ef">between</span> s.LOSAL <span style="color:#66d9ef">and</span> s.HISAL;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="子查询">子查询<a hidden class="anchor" aria-hidden="true" href="#子查询">#</a></h3>
+<p>什么是子查询？子查询可以出现在哪里？</p>
+<p>select 语句中嵌套 select 语句，被嵌套的select语句是子查询</p>
+<p>子查询可以出现在哪里</p>
+<p>select</p>
+<p>​	..(select)</p>
+<p>from</p>
+<p>​	..(selecct)</p>
+<p>wherer</p>
+<p>​	..(select)</p>
+<h4 id="where-子句中使用子查询">where 子句中使用子查询<a hidden class="anchor" aria-hidden="true" href="#where-子句中使用子查询">#</a></h4>
+<p>找出高于平薪资的员工信息</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-MYSQL" data-lang="MYSQL"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> ENAME <span style="color:#66d9ef">from</span> emp e <span style="color:#66d9ef">WHERE</span> e.sal <span style="color:#f92672">&gt;</span> (<span style="color:#66d9ef">SELECT</span> <span style="color:#a6e22e">avg</span>(sal) <span style="color:#66d9ef">FROM</span> emp )
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="from后面嵌套子查询">from后面嵌套子查询<a hidden class="anchor" aria-hidden="true" href="#from后面嵌套子查询">#</a></h4>
+<p>找出每个部门平均薪水的薪资等级</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-mysql" data-lang="mysql"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> t.deptno,t.avgsal, s.grade
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> (<span style="color:#66d9ef">SELECT</span> deptno, <span style="color:#a6e22e">AVG</span>(sal) <span style="color:#66d9ef">AS</span> <span style="color:#e6db74">&#39;avgsal&#39;</span> <span style="color:#66d9ef">FROM</span> emp <span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span> deptno) t
+</span></span><span style="display:flex;"><span>         <span style="color:#66d9ef">LEFT</span> <span style="color:#66d9ef">JOIN</span> salgrade s <span style="color:#66d9ef">ON</span> t.avgsal <span style="color:#66d9ef">BETWEEN</span> s.losal <span style="color:#66d9ef">AND</span> s.hisal;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="select后面嵌套子查询">select后面嵌套子查询<a hidden class="anchor" aria-hidden="true" href="#select后面嵌套子查询">#</a></h4>
+<p>通过子查询，找出每个员工所在的部门名称，要求显示员工名和部门名。</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-mysql" data-lang="mysql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> e.ename ,(<span style="color:#66d9ef">SELECT</span> d.dname <span style="color:#66d9ef">FROM</span> dept d <span style="color:#66d9ef">WHERE</span> d.deptno <span style="color:#f92672">=</span> e.deptno) <span style="color:#66d9ef">as</span> dname <span style="color:#66d9ef">from</span> emp e
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="union">UNION<a hidden class="anchor" aria-hidden="true" href="#union">#</a></h3>
+<p>MySQL UNION 操作符用于连接两个以上的 SELECT 语句的结果组合到一个结果集合中。多个 SELECT 语句会删除重复的数据。</p>
+<p>union 可以将两张没有关系的表查询结果放在一个结果集合中，in 和 or 关键字不行。</p>
+<p>找出工作岗位是SALESMAN 和MANAGER的员工</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-mysql" data-lang="mysql"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span>
+</span></span><span style="display:flex;"><span>    e.ename
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> emp e
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">WHERE</span> e.job <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;SALESMAN&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">UNION</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> e2.ename
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> emp e2
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">WHERE</span> e2.job <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;MANAGER&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>UNION 只会选取多个表中不同的值。请使用 UNION ALL 来选取重复的值！</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-MYSQL" data-lang="MYSQL"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span>
+</span></span><span style="display:flex;"><span>    e.ename
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> emp e
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">UNION</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> e2.ename
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> emp e2
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>+&mdash;&mdash;&ndash;+
+| ename  |
++&mdash;&mdash;&ndash;+
+| SMITH  |
+| ALLEN  |
+| WARD   |
+| JONES  |
+| MARTIN |
+| BLAKE  |
+| CLARK  |
+| SCOTT  |
+| KING   |
+| TURNER |
+| ADAMS  |
+| JAMES  |
+| FORD   |
+| MILLER |
++&mdash;&mdash;&ndash;+
+14 rows in set (0.00 sec)</p>
+<p>选取所有的值，包含重复</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-mysql" data-lang="mysql"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span>
+</span></span><span style="display:flex;"><span>    e.ename
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> emp e
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">UNION</span> <span style="color:#66d9ef">ALL</span> 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> e2.ename
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> emp e2
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>+&mdash;&mdash;&ndash;+
+| ename  |
++&mdash;&mdash;&ndash;+
+| SMITH  |
+| ALLEN  |
+| WARD   |
+| JONES  |
+| MARTIN |
+| BLAKE  |
+| CLARK  |
+| SCOTT  |
+| KING   |
+| TURNER |
+| ADAMS  |
+| JAMES  |
+| FORD   |
+| MILLER |
+| SMITH  |
+| ALLEN  |
+| WARD   |
+| JONES  |
+| MARTIN |
+| BLAKE  |
+| CLARK  |
+| SCOTT  |
+| KING   |
+| TURNER |
+| ADAMS  |
+| JAMES  |
+| FORD   |
+| MILLER |
++&mdash;&mdash;&ndash;+
+28 rows in set (0.00 sec)</p>
+<h3 id="limit">limit<a hidden class="anchor" aria-hidden="true" href="#limit">#</a></h3>
+<p>取结果集中的部分数据。</p>
+<p>limit startIndex,length</p>
+<p>第一个参数表示取值起始位置，limit 后面的0表示查询结果集中的第一条数据，1表示结果集的第二条数据。</p>
+<p>第二个表示取几个。</p>
+<p>取出工资前5名的员工</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-MYSQL" data-lang="MYSQL"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> emp <span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> sal <span style="color:#66d9ef">DESC</span> <span style="color:#66d9ef">LIMIT</span> <span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">5</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="表的创建">表的创建<a hidden class="anchor" aria-hidden="true" href="#表的创建">#</a></h3>
+<p>建表语句的语法格式：</p>
+<p>create table 表名（</p>
+<p>字段名1 数据类型</p>
+<p>字段名2 数据类型</p>
+<p>字段名3 数据类型</p>
+<p>&hellip;.</p>
+<p>）；</p>
+<p><strong>关于MYSQL当中字段的数据类型？以下只说常见的</strong></p>
+<p>int 整数型（java中的int）</p>
+<p>bigint 长整型（Java中的long）</p>
+<p>float 浮点型（Java中的float double）</p>
+<p>char 定长浮点型（string）</p>
+<p>varchar 可变长字符串（stringbuffer/stringBuilder）</p>
+<p>data 日期类型（对应java.sql. data类型 ）</p>
+<p>BLOB 二进制大对象（存储图片、视频等流媒体信息）Binary large OBject （对应Java中的object）</p>
+<p>CLOB 字符大对象（存储较大文本，比如，可以存储4G的字符串） Character Large OBject（对应java中的Object）</p>
+<p><strong>char和varchar怎么选择？</strong></p>
+<p>在实际的开发中，当某个字段中的数据长度不发生改变的时候，是定长的，性别等都是采用char。</p>
+<p>当一个字段的数据长度不确定，例如：简介、姓名等都是采用varchar。</p>
+<h4 id="insert">insert<a hidden class="anchor" aria-hidden="true" href="#insert">#</a></h4>
+<p>语法格式:</p>
+<p>​	insert into 表名（字段名1，字段名2，字段名3&hellip;.）values(值1，值2，值3)</p>
+<p>要求：字段的数量和值的数量相同 ，并且数据类型要对应相同 。</p>
+<p>字段名顺序可以调换。但是字段1&ndash;&gt;对应值1，字段2对应&mdash;&gt;值2。字段的下标和值的下标一一对应。</p>
+<p>insert格式1</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-MYSQL" data-lang="MYSQL"><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#a6e22e">t_student</span> (id, sex, classno, birth,name) <span style="color:#66d9ef">VALUES</span> (<span style="color:#ae81ff">1</span>,<span style="color:#e6db74">&#39;1&#39;</span>,<span style="color:#e6db74">&#39;高三一班&#39;</span>,<span style="color:#e6db74">&#39;19800901&#39;</span>,<span style="color:#e6db74">&#39;张三&#39;</span>)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>insert格式2   VALUES的顺序要与表格顺序一致，数量一致。</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-MYSQL" data-lang="MYSQL"><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> t_student <span style="color:#66d9ef">VALUES</span> (<span style="color:#ae81ff">1</span>,<span style="color:#e6db74">&#39;李四&#39;</span>,<span style="color:#e6db74">&#39;1&#39;</span>,<span style="color:#e6db74">&#39;高三一班&#39;</span>,<span style="color:#e6db74">&#39;19801010&#39;</span>)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>insert格式3   一次插入多行数据</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-MYSQL" data-lang="MYSQL"><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> t_student <span style="color:#66d9ef">VALUES</span> (<span style="color:#ae81ff">1</span>,<span style="color:#e6db74">&#39;李四&#39;</span>,<span style="color:#e6db74">&#39;1&#39;</span>,<span style="color:#e6db74">&#39;高三一班&#39;</span>,<span style="color:#e6db74">&#39;19801010&#39;</span>),(<span style="color:#ae81ff">1</span>,<span style="color:#e6db74">&#39;王五&#39;</span>,<span style="color:#e6db74">&#39;1&#39;</span>,<span style="color:#e6db74">&#39;高三一班&#39;</span>,<span style="color:#e6db74">&#39;19801010&#39;</span>),(<span style="color:#ae81ff">1</span>,<span style="color:#e6db74">&#39;赵六&#39;</span>,<span style="color:#e6db74">&#39;1&#39;</span>,<span style="color:#e6db74">&#39;高三一班&#39;</span>,<span style="color:#e6db74">&#39;19801010&#39;</span>)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="表的复制">表的复制<a hidden class="anchor" aria-hidden="true" href="#表的复制">#</a></h4>
+<p>create table tab_name  as select 语句; 将查询结果当作复制到一张新表。</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-MYSQL" data-lang="MYSQL"><span style="display:flex;"><span><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">TABLE</span> emp1 <span style="color:#66d9ef">as</span> <span style="color:#66d9ef">select</span> e.empno,e.ename,e.sal <span style="color:#66d9ef">from</span> emp e
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="修改表的数据">修改表的数据<a hidden class="anchor" aria-hidden="true" href="#修改表的数据">#</a></h3>
+<p>语法格式：</p>
+<p>​	update tab_name set 字段名1 = 值1，字段名2 = 值2&hellip; where条件</p>
+<p>注意：如果没有where条件，整个表数据都会更新。</p>
+<h3 id="删除数据">删除数据<a hidden class="anchor" aria-hidden="true" href="#删除数据">#</a></h3>
+<p>语法格式：</p>
+<p>delete from tab_name where</p>
+<p>注意 ：不加条件 删除整个表数据</p>
+<p><strong>删除大表</strong></p>
+<p>truncate table teb_name;(截断，留下表头，不可回滚。永久丢失)</p>
+<h3 id="约束">约束<a hidden class="anchor" aria-hidden="true" href="#约束">#</a></h3>
+<p>在创建表的时候，可以给表字段添加约束，保证表中数据合法性，完整性，有效性。</p>
+<p>常见约束</p>
+<p>非空约束（not null）：表示字段值不能为 null</p>
+<p>唯一约束（unique）:表示字段值不能重复，可以为null。</p>
+<p>主键约束pk（primary key）：表示字段既不能为null，也不能重复</p>
+<p>外键约束fk（foreign key）：</p>
+<h4 id="唯一约束"><strong>唯一约束</strong><a hidden class="anchor" aria-hidden="true" href="#唯一约束">#</a></h4>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-MYSQL" data-lang="MYSQL"><span style="display:flex;"><span><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">table</span> <span style="color:#a6e22e">t_user</span>(
+</span></span><span style="display:flex;"><span>  id <span style="color:#66d9ef">int</span>,
+</span></span><span style="display:flex;"><span>  username <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">50</span>) <span style="color:#66d9ef">UNIQUE</span> ,<span style="color:#75715e">#不能重复，可以为null
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  usercode <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">50</span>) <span style="color:#66d9ef">UNIQUE</span>
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-mysql" data-lang="mysql"><span style="display:flex;"><span><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">table</span> <span style="color:#a6e22e">t_user2</span>(
+</span></span><span style="display:flex;"><span>  id <span style="color:#66d9ef">int</span>,
+</span></span><span style="display:flex;"><span>  username <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">50</span>)  ,<span style="color:#75715e">#不能重复，可以为null
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  usercode <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">50</span>) ,
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">UNIQUE</span> (usercode,username) <span style="color:#75715e"># 两个字段联合起来不能重复
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="主键约束">主键约束<a hidden class="anchor" aria-hidden="true" href="#主键约束">#</a></h4>
+<p>添加主键约束,任何一张表都应该有主键。主键表示行数据的唯一标识。一张表只能有一个主键。主键值和业务不挂钩</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-MYSQL" data-lang="MYSQL"><span style="display:flex;"><span><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">table</span> <span style="color:#a6e22e">t_user3</span>(
+</span></span><span style="display:flex;"><span>  id <span style="color:#66d9ef">int</span> <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span> <span style="color:#66d9ef">AUTO_INCREMENT</span>,<span style="color:#75715e">#不能重复，不能为 null，自增
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  username <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">50</span>)  ,
+</span></span><span style="display:flex;"><span>  usercode <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">50</span>)
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">insert</span> <span style="color:#66d9ef">INTO</span> t_user3 <span style="color:#66d9ef">VALUES</span> (<span style="color:#ae81ff">1</span>,<span style="color:#e6db74">&#39;李四&#39;</span>,<span style="color:#e6db74">&#39;1001&#39;</span>);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="外键约束">外键约束<a hidden class="anchor" aria-hidden="true" href="#外键约束">#</a></h3>
+<p>A表中的某个字段引用B表中的某个字段，A表为子表，B表为父表。（引用字段的表叫做子表，被引用字段的是父表）</p>
+<p>被引用的字段要具有唯一性，至少有UNIQUE约束。</p>
+<p>删除数据的时候先删除子表数据，再删除父表数据。</p>
+<p>插入数据的时候，先插入父表数据，然后子表。</p>
+<p>创建表的时候，先创建父表，再创建子表。</p>
+<p>删除表的时候，先删除子表，再删除父表。</p>
+<p><strong>添加外键约束</strong></p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-MYSQL" data-lang="MYSQL"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#a6e22e">t_student</span>(
+</span></span><span style="display:flex;"><span>    sid <span style="color:#66d9ef">int</span> <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span> <span style="color:#66d9ef">AUTO_INCREMENT</span>,
+</span></span><span style="display:flex;"><span>    sname <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">50</span>),
+</span></span><span style="display:flex;"><span>    cno <span style="color:#66d9ef">int</span> ,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">FOREIGN</span> <span style="color:#66d9ef">KEY</span> (cno) <span style="color:#66d9ef">REFERENCES</span> <span style="color:#a6e22e">t_class</span>(cid)
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h3 id="事务">事务<a hidden class="anchor" aria-hidden="true" href="#事务">#</a></h3>
+<p>事务就是一组相关联的原子性的 SQL 语句，事务内的语句要么全部执行成功，要么全部执行失败回滚</p>
+<p>对于单条SQL语句，数据库系统自动将其作为一个事务执行，这种事务被称为<em>隐式事务</em>。</p>
+<p>要手动把多条SQL语句作为一个事务执行，使用<code>BEGIN</code>开启一个事务，使用<code>COMMIT</code>提交一个事务，这种事务被称为<em>显式事务</em></p>
+<p>很显然多条SQL语句要想作为一个事务执行，就必须使用显式事务</p>
+<p><code>COMMIT</code>是指提交事务，即试图把事务内的所有SQL所做的修改永久保存。如果<code>COMMIT</code>语句执行失败了，整个事务也会失败。</p>
+<p>有些时候，我们希望主动让事务失败，这时，可以用<code>ROLLBACK</code>回滚事务，整个事务会失败：</p>
+<p>对于两个并发执行的事务，如果涉及到操作同一条记录的时候，可能会发生问题。因为并发操作会带来数据的不一致性，包括脏读、不可重复读、幻读等。数据库系统提供了隔离级别来让我们有针对性地选择事务的隔离级别，避免数据不一致的问题</p>
+<h4 id="事务的条件"><strong>事务的条件</strong><a hidden class="anchor" aria-hidden="true" href="#事务的条件">#</a></h4>
+<p>一般来说，事务是必须满足4个条件（ACID）：：原子性（<strong>A</strong>tomicity，或称不可分割性）、一致性（<strong>C</strong>onsistency）、隔离性（<strong>I</strong>solation，又称独立性）、持久性（<strong>D</strong>urability）</p>
+<ul>
+<li>**原子性：**一个事务（transaction）中的所有操作，要么全部完成，要么全部不完成，不会结束在中间某个环节。事务在执行过程中发生错误，会被回滚（Rollback）到事务开始前的状态，就像这个事务从来没有执行过一样。</li>
+<li>**一致性：**在事务开始之前和事务结束以后，数据库的完整性没有被破坏。这表示写入的资料必须完全符合所有的预设规则，这包含资料的精确度、串联性以及后续数据库可以自发性地完成预定的工作。</li>
+<li>**隔离性：**数据库允许多个并发事务同时对其数据进行读写和修改的能力，隔离性可以防止多个事务并发执行时由于交叉执行而导致数据的不一致。事务隔离分为不同级别，包括读未提交（Read uncommitted）、读提交（read committed）、可重复读（repeatable read）和串行化（Serializable）。</li>
+<li>**持久性：**事务处理结束后，对数据的修改就是永久的，即便系统故障也不会丢失。</li>
+</ul>
+<h4 id="事务的隔离级别">事务的隔离级别<a hidden class="anchor" aria-hidden="true" href="#事务的隔离级别">#</a></h4>
+<p>mysql 的事务隔离级别是为了解决并发事务互相干扰的问题。隔离级别有四种</p>
+<p>读未提交（Read uncommitted）:该隔离级别的事务可以看到其他事务中未提交的数据。该隔离级别因为可以读取到其他事务中未提交的数据，而未提交的数据有可能会发生回滚。因此我们把该级别读取到的数据称之为脏数据。把这个问题称之为脏读。实际开发中很少使用。</p>
+<p>读提交（read committed）:该隔离级别的事务能读取到其他事务以及提交的数据(不能读取其他事务未提交的数据)，解决了脏读问题。但是两次使用相同的查询可能会得到不一样的结果。这种现象叫做不可重复读。(比如：事务第一次查询数据，其他事务未提交该数据，得到结果A，第二次执行同样的查询，其他事务提交该数据，得到不同的结果B。每次查询结果都有可能不一样)</p>
+<p>可重复读（repeatable read）:mysql默认的事务隔离级别，该级别保证了同一个事务中多次同样读取，读取到的记录结果是一致的(该事务结束前，读取到的是备份数据)。但是理论上可重复读还是无法解决另一个幻读问题(Phantom Read)。所谓幻读指的是某个事务在读取某个范围内的记录时，另外的一个事务又在该范围插入了新的记录，当之前的事务再次读取该范围的记录时，会产生幻行(Phantom Row)。InnoDB存储引擎通过多版本并发控制(MVCC，Multiversion Concurrency Control)解决了幻读问题；(幻读：同一个查询，在不同时间得到不同的结果，幻读读取到的是其他事务新增或者删除的“幻象”行数据。不发生在更新查询)</p>
+<p>和串行化也叫序列化（Serializable）:事务最高隔离级别，他会强制事务排序。但是执行效率低。使用场景不多。(操作同一个数据时，A事务不结束，B事务就排队等锁)</p>
+<p>注意：演示隔离级别，设置隔离级别后要退出登录，重进。隔离级别才生效。</p>
+<hr>
+<h3 id="索引">索引<a hidden class="anchor" aria-hidden="true" href="#索引">#</a></h3>
+<p>添加索引是给某一个字段，或者某些字段添加索引</p>
+<p>索引就相当于一本数的目录，通过目录可以快速的找到对应的资源。查询一张表有两种方式，</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-mysql" data-lang="mysql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> ename <span style="color:#66d9ef">from</span> emp <span style="color:#66d9ef">where</span> ename <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;xxx&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#当ename 字段上没有添加索引的时候，以上sql会进行全表扫描，扫描ename字段中所有的值。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#当ename 字段添加索引，以上sql语句会根据索引扫描，快速定位
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>全表扫描：</p>
+<p>根据索引检索(缩小扫描范围)：索引虽然可以提高检索效率，但是不能随意添加索引，因为索引也是数据库当中的对象，也需要数据库不断的维护。是有维护成本的。比如，表中的经常被修改，这样就不适合添加索引，因为数据一旦修改，索引需要重新排序，进行维护。</p>
+<p>什么时候给字段添加索引：数据量庞大，该字段很少DML(增，删，改)操作,该字段经常出现再where子句中（经常查询哪个字段）</p>
+<p>注意：主键和具有unique约束的字段自动会添加索引。根据主键查询效率高。</p>
+<p>可以使用EXPLAIN来查看检索方式</p>
+<p>mysql&gt; EXPLAIN select ename,sal from emp WHERE sal = 5000;
++&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;+&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;+&mdash;&mdash;+&mdash;&mdash;&mdash;+&mdash;&mdash;+&mdash;&mdash;+&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+
+| id | select_type | table | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra       |
++&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;+&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;+&mdash;&mdash;+&mdash;&mdash;&mdash;+&mdash;&mdash;+&mdash;&mdash;+&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+
+|  1 | SIMPLE      | emp   | NULL       | ALL  | NULL          | NULL | NULL    | NULL |   14 |    10.00 | Using where |
++&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;+&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;+&mdash;&mdash;+&mdash;&mdash;&mdash;+&mdash;&mdash;+&mdash;&mdash;+&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;-+
+1 row in set, 1 warning (0.00 sec)</p>
+<p>type 字段代表检索类型。</p>
+<h4 id="添加索引">添加索引<a hidden class="anchor" aria-hidden="true" href="#添加索引">#</a></h4>
+<p>给薪资字段添加索引。</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-mysql" data-lang="mysql"><span style="display:flex;"><span><span style="color:#75715e">#给emp表的sal字段添加名为 emp_sal_index的索引
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">INDEX</span> emp_sal_index <span style="color:#66d9ef">ON</span>  <span style="color:#a6e22e">emp</span>(sal);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>再次执行查询</p>
+<p>mysql&gt; EXPLAIN select ename,sal from emp WHERE sal = 5000;
++&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;+&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;+&mdash;&mdash;-+&mdash;&mdash;+&mdash;&mdash;&mdash;-+&mdash;&mdash;-+
+| id | select_type | table | partitions | type | possible_keys | key           | key_len | ref   | rows | filtered | Extra |
++&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;+&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;+&mdash;&mdash;-+&mdash;&mdash;+&mdash;&mdash;&mdash;-+&mdash;&mdash;-+
+|  1 | SIMPLE      | emp   | NULL       | ref  | emp_sal_index | emp_sal_index | 9       | const |    1 |   100.00 | NULL  |
++&mdash;-+&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;+&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;+&mdash;&mdash;-+&mdash;&mdash;+&mdash;&mdash;&mdash;-+&mdash;&mdash;-+
+1 row in set, 1 warning (0.00 sec)</p>
+<p>type改变了，匹配的行数rows也改变了</p>
+<h4 id="删除索引">删除索引<a hidden class="anchor" aria-hidden="true" href="#删除索引">#</a></h4>
+<p>drop index 索引名称 on 表名</p>
+<p><strong>索引原理</strong></p>
+<p>通过B tree 缩小扫描范围，底层索引进行了排序，分析，索引会携带数据在表中的“物理地址”，最终通过索引检索到数据之后，获取到关联的物理地址，通过物理地址定位表中的数据，效率是最高的。</p>
+<p>Select ename from emp where ename=’smith’;</p>
+<p>通过索引转换为：</p>
+<p>Select ename from emp where 物理地址=0x33；</p>
+<h4 id="索引的分类">索引的分类<a hidden class="anchor" aria-hidden="true" href="#索引的分类">#</a></h4>
+<p>单一索引：给单个字段添加索引</p>
+<p>复合索引：给多个字段联合起来添加一个索引</p>
+<p>主键索引：主键上会自动添加索引</p>
+<p>唯一索引：有unique约束的字段上会自动添加索引</p>
+<p>模糊查询会使索引失效。</p>
+<h3 id="数据库设计三范式">数据库设计三范式<a hidden class="anchor" aria-hidden="true" href="#数据库设计三范式">#</a></h3>
+<p>什么是设计范式 ：设计表的依据。按照三范式设计的表不会出现数据冗余。</p>
+<p>三范式都是哪些。</p>
+<p>第一范式：任何一张表都应该有主键，并且每一个字段原子性不可再分</p>
+<p>第二范式：建立在第一范式的基础上，所有非主键字段完全依赖主键，(没有复合主键，只有单一主键 )不能产生产生部分依赖。(所有字段依赖于一个主键，不依赖两个主键)</p>
+<p>第三范式：第三范式建立在第二范式基础上，所有非主键字段直接依赖主键，不能产生传递依赖。</p>
+<p>只要遵守三范式，表数据就不会出现冗余。</p>
+<p>提醒：在实际开发中，以满足客户的需求为主，有的时候会拿冗余换执行速度。</p>
+<p>一对一的设计：主键共享，外键唯一(fk+unique);</p>
+<p>一对多设计：两张表，多的表加外键。</p>
+<p>多对多设计：三张表，关系表两个外键</p>
+
+
+        </div>
+
+        <footer class="post-footer">
+            
+<nav class="paginav">
+  <a class="prev" href="https://train0405.github.io/posts/tech/tech/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>Tech</span>
+  </a>
+  <a class="next" href="https://train0405.github.io/posts/life/%E8%AF%97%E6%83%85/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>诗情</span>
+  </a>
+</nav>
+
+        </footer>
+    </div>
+
+
+
+<div>
+    <div class="pagination__title">
+        <span class="pagination__title-h" style="font-size: 20px;">💬评论</span>
+        <hr />
+    </div>
+
+    <div id="tcomment"></div>
+
+    <script src="https://cdn.staticfile.org/twikoo/1.5.8/twikoo.all.min.js">
+    </script>
+    
+
+    
+
+    <script>
+        twikoo.init({
+            envId:  null , 
+            el: "#tcomment",
+            lang: 'zh-CN',
+            region:  null ,
+            path: window.TWIKOO_MAGIC_PATH||window.location.pathname,
+            
+            
+            
+            
+            
+            
+            
+        });
+    </script>
+
+</div>
+</article>
+</main>
+
+
+<script async src="https://unpkg.com/mermaid@8.8.1/dist/mermaid.min.js"></script>
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<footer class="footer">
+    <span>
+        Copyright
+        &copy;
+        2020-2023
+        <a href="https://train0405.github.io/" style="color:#939393;">Train&#39;s Blog</a>
+        All Rights Reserved
+    </span>
+
+    <a href="https://beian.miit.gov.cn/" target="_blank" style="color:#939393;">填写自己的备案号</a>&nbsp;
+
+    <span>
+        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=null"
+           style="display:inline-block;text-decoration:none;height:20px;color:#939393;">
+            <img src="img/beian.png" style="float:left;margin: 0px 5px 0px 0px;"/>
+            填自己的公网安备
+        </a>
+    </span>
+
+    <span id="busuanzi_container">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        总访客数: <span id="busuanzi_value_site_uv"></span>
+        总访问量: <span id="busuanzi_value_site_pv"></span>
+    </span>
+
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <span class="topInner">
+        <svg class="topSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z"/>
+        </svg>
+        <span id="read_progress"></span>
+    </span>
+</a>
+
+<script>
+    document.addEventListener('scroll', function (e) {
+        const readProgress = document.getElementById("read_progress");
+        const scrollHeight = document.documentElement.scrollHeight;
+        const clientHeight = document.documentElement.clientHeight;
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        
+        readProgress.innerText = ((scrollTop / (scrollHeight - clientHeight)).toFixed(2) * 100).toFixed(0);
+    })
+</script>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    let mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+
+<script>
+    document.body.addEventListener('copy', function (e) {
+        if (window.getSelection().toString() && window.getSelection().toString().length > 50) {
+            let clipboardData = e.clipboardData || window.clipboardData;
+            if (clipboardData) {
+                e.preventDefault();
+                let htmlData = window.getSelection().toString() +
+                    '\r\n\n————————————————\r\n' +
+                    '版权声明：本文为「' + {
+                { .
+                    Site.Title
+                }
+            }
+                +'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                let textData = window.getSelection().toString() +
+                    '\r\n\n————————————————\r\n' +
+                    '版权声明：本文为「' + {
+                { .
+                    Site.Title
+                }
+            }
+                +'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                clipboardData.setData('text/html', htmlData);
+                clipboardData.setData('text/plain', textData);
+            }
+        }
+    });
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = '📄复制';
+
+        function copyingDone() {
+            copybutton.innerText = '👌🏻已复制!';
+            setTimeout(() => {
+                copybutton.innerText = '📄复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                let text = codeblock.textContent +
+                    '\r\n————————————————\r\n' +
+                    '版权声明：本文为「' + "Train's Blog"
+                +'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                navigator.clipboard.writeText(text);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) {
+            }
+            ;
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild === container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName === "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+    $("code[class^=language] ").on("mouseover", function () {
+        if (this.clientWidth < this.scrollWidth) {
+            $(this).css("width", "135%")
+        }
+    }).on("mouseout", function () {
+        $(this).css("width", "100%")
+    })
+</script>
+</body>
+
+</html>

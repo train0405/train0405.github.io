@@ -62,6 +62,15 @@
     </item>
     
     <item>
+      <title>Mysql笔记</title>
+      <link>https://train0405.github.io/posts/tech/mysql%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Tue, 14 Jul 2020 14:14:14 +0800</pubDate>
+      
+      <guid>https://train0405.github.io/posts/tech/mysql%E7%AC%94%E8%AE%B0/</guid>
+      <description>mysql笔记 SQL 语句分类 DQL（数据查询语言）：查询语句，凡是select语句都是DQL DML（数据操作语言）：insert delete update，对表中的数据进行增删改 DDL（数据定义语言）：create drop alter，对表结构的增删改 TCL（事务控制语言）：commit提交事务，rol</description>
+    </item>
+    
+    <item>
       <title>诗情</title>
       <link>https://train0405.github.io/posts/life/%E8%AF%97%E6%83%85/</link>
       <pubDate>Wed, 01 Jul 2020 21:27:53 +0800</pubDate>
@@ -71,12 +80,30 @@
     </item>
     
     <item>
+      <title>Servlet2</title>
+      <link>https://train0405.github.io/posts/tech/servlet2/</link>
+      <pubDate>Sun, 28 Jun 2020 22:13:28 +0800</pubDate>
+      
+      <guid>https://train0405.github.io/posts/tech/servlet2/</guid>
+      <description>Servlet servlet的继承关系 HttpServlet&amp;mdash;&amp;gt;GenericServlet&amp;mdash;&amp;gt;Servlet Servlet有三个重点方法 void init() void service void destroy() 当发起请求是tomcat会调用service()方法。然而GenericServlet没有重写改方法，HttpServlet重写了方法 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 String method = req.getMethod(); long lastModified; if (method.equals(&amp;#34;GET&amp;#34;)) { lastModified =</description>
+    </item>
+    
+    <item>
       <title>Js</title>
       <link>https://train0405.github.io/posts/tech/js/</link>
       <pubDate>Sat, 27 Jun 2020 14:32:41 +0800</pubDate>
       
       <guid>https://train0405.github.io/posts/tech/js/</guid>
       <description>1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;#34;utf-8&amp;#34;&amp;gt; &amp;lt;script language=&amp;#34;javascript&amp;#34;&amp;gt; // String str = &amp;#34;hello world&amp;#34; ; /* var str = &amp;#34;hello world&amp;#34;; alert(typeof str); str = 9999 ; alert(typeof str); */ /* var person = new Object(); person.pid = &amp;#34;p001&amp;#34;; person.pname=&amp;#34;鸠摩智&amp;#34;; alert(person.pid+&amp;#34;_&amp;#34;+person.pname); */ //java 方法 public String hello(String name){ return &amp;#34;hello to &amp;#34; + name ; } //js 方法 function hello(num1 , num2 , name){ if(num1&amp;gt;num2){ return &amp;#34;hello to&amp;#34; +</description>
+    </item>
+    
+    <item>
+      <title>Servlet</title>
+      <link>https://train0405.github.io/posts/tech/servlet/</link>
+      <pubDate>Sat, 27 Jun 2020 10:39:59 +0800</pubDate>
+      
+      <guid>https://train0405.github.io/posts/tech/servlet/</guid>
+      <description>Servlert 1.IDEA安装配置好tomcat 2.导入tomcat jar包 3.前端html form表单 1 2 3 4 5 6 7 &amp;lt;form action=&amp;#34;add&amp;#34; method=&amp;#34;post&amp;#34;&amp;gt; 名称：&amp;lt;input type=&amp;#34;text&amp;#34; name=&amp;#34;fname&amp;#34;/&amp;gt;&amp;lt;br/&amp;gt; 价格：&amp;lt;input type=&amp;#34;text&amp;#34; name=&amp;#34;price&amp;#34;/&amp;gt;&amp;lt;br/&amp;gt; 库存：&amp;lt;input type=&amp;#34;text&amp;#34; name=&amp;#34;fcount&amp;#34;/&amp;gt;&amp;lt;br/&amp;gt; 备注：&amp;lt;input type=&amp;#34;text&amp;#34; name=&amp;#34;remark&amp;#34;/&amp;gt;&amp;lt;br/&amp;gt; &amp;lt;input type=&amp;#34;submit&amp;#34; value=&amp;#34;添加&amp;#34; /&amp;gt; &amp;lt;/form&amp;gt; 4.AddS</description>
     </item>
     
     <item>
